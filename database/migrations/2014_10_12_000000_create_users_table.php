@@ -25,10 +25,17 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
         DB::table('users')->insert([
+            [
             'name' => 'Administrator',
             'email' => 'admin@p.com',
             'password' => bcrypt('admin'),
             'role' => 'admin'
+        ],[
+            'name' => 'Petugas Gudang',
+            'email' => 'pg@p.com',
+            'password' => bcrypt('pg'),
+            'role' => 'pg'
+        ]
         ]);
     }
 

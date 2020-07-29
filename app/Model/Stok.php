@@ -4,14 +4,14 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DetailTransaksi extends Model
+class Stok extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'detail_transaksi';
+    protected $table = 'stok';
     /**
      * The attributes that aren't mass assignable.
      *

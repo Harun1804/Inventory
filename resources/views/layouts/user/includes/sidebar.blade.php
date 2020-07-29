@@ -4,6 +4,19 @@
 				<nav>
 					<ul class="nav">
                         <li><a href="{{ route('dashboard') }}"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+                        @if (Auth()->user()->role == 'pg')
+                            <li>
+							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-layers"></i> <span>Barang</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="subPages" class="collapse ">
+								<ul class="nav">
+									<li><a href="{{ route('pg.cb.index') }}" class="">Cek Barang</a></li>
+									<li><a href="{{ route('pg.bm.index') }}" class="">Barang Masuk</a></li>
+									<li><a href="{{ route('pg.bk.index') }}" class="">Barang Keluar</a></li>
+									<li><a href="{{ route('pg.br.index') }}" class="">Request Barang</a></li>
+								</ul>
+							</div>
+                        </li>
+                        @endif
 						{{-- <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
 						<li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
 						<li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>

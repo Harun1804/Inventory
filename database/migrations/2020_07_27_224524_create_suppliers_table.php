@@ -16,7 +16,7 @@ class CreateSuppliersTable extends Migration
         Schema::create('supplier', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->text('alamat');
+            $table->text('alamat')->nullable();
             $table->string('telepon',14);
             $table->timestamps();
         });
