@@ -16,6 +16,15 @@
 								</ul>
 							</div>
                         </li>
+                        @elseif(Auth()->user()->role == 'admin')
+                        <li><a href="{{ route('admin.supplier.index') }}" class=""><i class="lnr lnr-user"></i> <span>Supplier</span></a></li>
+                        <li><a href="{{ route('admin.kategori.index') }}" class=""><i class="lnr lnr-list"></i> <span>Kategori</span></a></li>
+                        <li><a href="{{ route('admin.pemesanan.index') }}" class=""><i class="lnr lnr-cart"></i> <span>Pemesanan</span></a></li>
+                        <li><a href="{{ route('admin.br.index') }}" class=""><i class="lnr lnr-sync"></i> <span>Permintaan</span></a></li>
+                        <li><a href="#" class=""><i class="lnr lnr-users"></i> <span>Pembelian</span></a></li>
+                        @elseif(Auth()->user()->role == 'supplier')
+                        <li><a href="{{ route('supplier.pesanan.index') }}" class=""><i class="lnr lnr-cart"></i> <span>Pesanan</span></a></li>
+                        <li><a href="{{ route('supplier.produk.index') }}" class=""><i class="lnr lnr-dice"></i> <span>Produk</span></a></li>
                         @endif
 						{{-- <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
 						<li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>

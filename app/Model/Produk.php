@@ -33,4 +33,9 @@ class Produk extends Model
     {
         return $this->hasOne(Stok::class);
     }
+
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class);
+    }
 }

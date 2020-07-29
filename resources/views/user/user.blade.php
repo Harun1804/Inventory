@@ -6,6 +6,7 @@
         <p class="panel-subtitle"></p>
     </div>
     <div class="panel-body">
+        @if (Auth()->User()->role == 'pg')
         <div class="row">
             <div class="col-md-3">
                 <div class="metric">
@@ -35,6 +36,37 @@
                 </div>
             </div>
         </div>
+        @elseif(Auth()->User()->role == 'admin')
+        <div class="row">
+            <div class="col-md-3">
+                <div class="metric">
+                    <span class="icon"><i class="lnr lnr-user"></i></span>
+                    <p>
+                        <span class="number">{{ $sp->count() }}</span>
+                        <span class="title">Supplier</span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric">
+                    <span class="icon"><i class="lnr lnr-sync"></i></span>
+                    <p>
+                        <span class="number">{{ $tr::where('jenis_transaksi','=','permintaan')->where('status_transaksi','=','pemesanan')->count() }}</span>
+                        <span class="title">Request Barang</span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric">
+                    <span class="icon"><i class="lnr lnr-users"></i></span>
+                    <p>
+                        <span class="number">{{ $tr::where('jenis_transaksi','=','pembelian')->where('status_transaksi','=','pemesanan')->count() }}</span>
+                        <span class="title">Pembeli</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        @endif
         {{-- <div class="row">
             <div class="col-md-9">
                 <div id="headline-chart" class="ct-chart"><svg xmlns:ct="http://gionkunz.github.com/chartist-js/ct"

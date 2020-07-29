@@ -18,4 +18,9 @@ class Kategori extends Model
      * @var array
      */
     protected $guarded = [];
+
+    public function produk()
+    {
+        return $this->hasOne(Produk::class);
+    }
 }

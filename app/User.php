@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Model\Supplier;
 use App\Model\Transaksi;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -41,5 +42,10 @@ class User extends Authenticatable
     public function transaksi()
     {
         return $this->hasOne(Transaksi::class);
+    }
+
+    public function supplier()
+    {
+        return $this->hasOne(Supplier::class);
     }
 }
