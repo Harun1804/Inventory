@@ -14,6 +14,7 @@
             <thead>
                 <tr>
                     <th>#</th>
+                    <th>Barcode</th>
                     <th>Kategori</th>
                     <th>Nama Barang</th>
                     <th>Deskripsi</th>
@@ -24,8 +25,10 @@
                 @foreach ($produk as $pr)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
+                    <td><img src="data:image/png;base64,{{DNS1D::getBarcodePNG($pr->id, 'C39')}}" alt="barcode" /></td>
                     <td>{{ $pr->kategori->nama_kategori }}</td>
                     <td>{{ $pr->nama_barang }}</td>
+
                     <td>{{ $pr->deskripsi }}</td>
                     <td>
                         <a href="{{ url('/supplier/produk/'.$pr->id.'/edit') }}" class="btn btn-sm btn-warning">Edit</a>

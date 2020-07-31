@@ -25,6 +25,8 @@
                         @elseif(Auth()->user()->role == 'supplier')
                         <li><a href="{{ route('supplier.pesanan.index') }}" class=""><i class="lnr lnr-cart"></i> <span>Pesanan</span></a></li>
                         <li><a href="{{ route('supplier.produk.index') }}" class=""><i class="lnr lnr-dice"></i> <span>Produk</span></a></li>
+                        @elseif(Auth()->user()->role == 'pemilik')
+                        <li><a href="{{ route('pemilik.laporan.index') }}" class=""><i class="lnr lnr-file-empty"></i> <span>Laporan</span></a></li>
                         @endif
 						{{-- <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
 						<li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>

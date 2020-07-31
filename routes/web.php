@@ -72,4 +72,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/supplier/produk/{id}/edit', 'ProdukController@edit')->name('supplier.produk.edit');
     Route::put('/supplier/produk/{id}/update', 'ProdukController@update')->name('supplier.produk.update');
     Route::get('/supplier/produk/{id}/delete', 'ProdukController@delete')->name('supplier.produk.delete');
+
+    //Laporan
+    route::get('/pemilik/laporan','PemilikController@index')->name('pemilik.laporan.index');
+    route::get('/pemilik/laporan/{id}/cetak','PemilikController@cetak')->name('pemilik.laporan.cetak');
 });

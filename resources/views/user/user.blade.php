@@ -66,6 +66,39 @@
                 </div>
             </div>
         </div>
+        @elseif(Auth()->User()->role == 'supplier')
+        <div class="row">
+            <div class="col-md-3">
+                <div class="metric">
+                    <span class="icon"><i class="lnr lnr-dice"></i></span>
+                    <p>
+                        <span class="number">{{ $pd->where('user_id','=',Auth()->User()->id)->count() }}</span>
+                        <span class="title">Produk</span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric">
+                    <span class="icon"><i class="lnr lnr-sync"></i></span>
+                    <p>
+                        <span class="number">{{ $tr::where('jenis_transaksi','=','pemesanan')->where('status_transaksi','=','pemesanan')->count() }}</span>
+                        <span class="title">Pemesanan</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        @elseif(Auth()->User()->role == 'pemilik')
+        <div class="row">
+            <div class="col-md-3">
+                <div class="metric">
+                    <span class="icon"><i class="lnr lnr-sync"></i></span>
+                    <p>
+                        <span class="number">{{ $tr->where('jenis_transaksi','=','pemesanan')->count() }}</span>
+                        <span class="title">Transaksi</span>
+                    </p>
+                </div>
+            </div>
+        </div>
         @endif
         {{-- <div class="row">
             <div class="col-md-9">
