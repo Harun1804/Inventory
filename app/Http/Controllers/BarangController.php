@@ -8,6 +8,7 @@ use App\Model\Kategori;
 use App\Model\Produk;
 use App\Model\Transaksi;
 use Illuminate\Http\Request;
+use PDF;
 
 class BarangController extends Controller
 {
@@ -35,7 +36,16 @@ class BarangController extends Controller
         BarangMasuk::where('id', '=', $id)->update([
             'rak' => $request->rak
         ]);
-        return redirect(route('pg.bm.index'))->with('status', 'Barang Sudah Disimpan ke Rak');
+        return $this->cetakinvoice($id);
+        //return redirect(route('pg.bm.index'))->with('status', 'Barang Sudah Disimpan ke Rak');
+    }
+
+    public function cetakinvoice($id)
+    {
+        $transaksi = Transaksi::where('id', '=', $id)->get();
+        $dtransaksi = DetailTransaksi::where('transaksi_id', '=', $id)->get();
+        $pdf = PDF::loadView('export/invoice', ['dtransaksi' => $dtransaksi]);
+        return $pdf->download('Invoice.pdf');
     }
 
     public function barangKeluar()
@@ -68,10 +78,10 @@ class BarangController extends Controller
     {
         Transaksi::create([
             'user_id' => Auth()->User()->id,
-            'jenis_transaksi' => 'permintaan',
+            'jenis_transaksi' => 'pemesanan',
             'status_transaksi' => 'pemesanan',
         ]);
-        return redirect(route('pg.br.index'))->with('status', 'Permintaan Telah Dibuat');
+        return redirect(route('pg.br.index'))->with('status', 'Pembelian Telah Dibuat');
     }
 
     public function hapusRequest($id)

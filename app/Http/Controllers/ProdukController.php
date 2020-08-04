@@ -26,7 +26,11 @@ class ProdukController extends Controller
             'deskripsi' => $request->deskripsi,
             'user_id' => Auth()->User()->id
         ]);
-        return redirect(route('supplier.produk.index'))->with('status', 'Data Berhasil Ditambahkan');
+        if (Auth()->User()->role == 'supplier') {
+            return redirect(route('supplier.produk.index'))->with('status', 'Data Berhasil Ditambahkan');
+        } else {
+            return redirect(route('admin.produk.index'))->with('status', 'Data Berhasil Ditambahkan');
+        }
     }
 
     public function edit($id)
@@ -41,12 +45,20 @@ class ProdukController extends Controller
             'nama_barang' => $request->nama_barang,
             'deskripsi' => $request->deskripsi
         ]);
-        return redirect(route('supplier.produk.index'))->with('status', 'Data Berhasil Diubah');
+        if (Auth()->User()->role == 'supplier') {
+            return redirect(route('supplier.produk.index'))->with('status', 'Data Berhasil Diperbaharui');
+        } else {
+            return redirect(route('admin.produk.index'))->with('status', 'Data Berhasil Diperbaharui');
+        }
     }
 
     public function delete($id)
     {
         Produk::destroy($id);
-        return redirect(route('supplier.produk.index'))->with('status', 'Data Berhasil Dihapus');
+        if (Auth()->User()->role == 'supplier') {
+            return redirect(route('supplier.produk.index'))->with('status', 'Data Berhasil Dihapus');
+        } else {
+            return redirect(route('admin.produk.index'))->with('status', 'Data Berhasil Dihapus');
+        }
     }
 }

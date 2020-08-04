@@ -51,6 +51,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/kategori/{id}/edit', 'kategoriController@edit')->name('admin.kategori.edit');
     Route::put('/admin/kategori/{id}/update', 'kategoriController@update')->name('admin.kategori.update');
     Route::get('/admin/kategori/{id}/delete', 'kategoriController@delete')->name('admin.kategori.delete');
+    //produk
+    Route::get('/admin/produk', 'ProdukController@index')->name('admin.produk.index');
+    Route::post('/admin/produk/create', 'ProdukController@create')->name('admin.produk.create');
+    Route::get('/admin/produk/{id}/edit', 'ProdukController@edit')->name('admin.produk.edit');
+    Route::put('/admin/produk/{id}/update', 'ProdukController@update')->name('admin.produk.update');
+    Route::get('/admin/produk/{id}/delete', 'ProdukController@delete')->name('admin.produk.delete');
     //permintaan
     Route::get('/admin/barang_request/', 'PermintaanController@index')->name('admin.br.index');
     Route::get('/admin/barang_request/{id}', 'PermintaanController@detailPermintaan')->name('admin.br.detail');
@@ -74,6 +80,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/supplier/produk/{id}/delete', 'ProdukController@delete')->name('supplier.produk.delete');
 
     //Laporan
-    route::get('/pemilik/laporan','PemilikController@index')->name('pemilik.laporan.index');
-    route::get('/pemilik/laporan/{id}/cetak','PemilikController@cetak')->name('pemilik.laporan.cetak');
+    route::get('/pemilik/laporan', 'PemilikController@index')->name('pemilik.laporan.index');
+    route::get('/pemilik/laporan/{id}/cetak', 'PemilikController@cetak')->name('pemilik.laporan.cetak');
+    route::post('/pemilik/laporan/cetaktanggal', 'PemilikController@cetakTanggal')->name('pemilik.laporan.cetak.tanggal');
+
+    //Pembelian
+    Route::get('/pembelian/pesanan', 'PesananController@index')->name('pembelian.pesanan.index');
+    Route::get('/pembelian/pesanan/{id}', 'PesananController@detailPesanan')->name('pembelian.pesanan.detail');
+    Route::put('/pembelian/pesanan/{id}/persetujuan', 'PesananController@approve')->name('pembelian.pesanan.persetujuan');
 });

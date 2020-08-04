@@ -13,7 +13,7 @@
                 <tr>
                     <th>Nama Produk</th>
                     <th>Jumlah Permintaan</th>
-                    @if (Auth()->User()->role == 'supplier')
+                    @if (Auth()->User()->role == 'supplier' || Auth()->User()->role == 'pembeli')
                     <th>Aksi</th>
                     @endif
                 </tr>
@@ -23,7 +23,7 @@
                 <tr>
                     <td>{{ $tr->produk->nama_barang }}</td>
                     <td>{{ $tr->jumlah_transaksi }}</td>
-                    @if (Auth()->User()->role == 'supplier')
+                    @if (Auth()->User()->role == 'supplier' || Auth()->User()->role == 'pembeli')
                     <td><button class="btn btn-sm btn-success" data-toggle="modal" data-target="#kirim">Kirim
                             Barang</button></td>
                     <!-- Modal -->
@@ -67,6 +67,9 @@
             </div>
             @elseif(Auth()->User()->role == 'supplier')
             <div class="col-md-6 text-right"><a href="{{ route('supplier.pesanan.index') }}"
+                    class="btn btn-primary">Back</a></div>
+                    @elseif(Auth()->User()->role == 'pembeli')
+            <div class="col-md-6 text-right"><a href="{{ route('pembelian.pesanan.index') }}"
                     class="btn btn-primary">Back</a></div>
             @endif
         </div>

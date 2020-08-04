@@ -2,6 +2,38 @@
 @section('content')
 <div class="panel">
     <div class="panel-heading">
+        <h3 class="panel-title">Berdasarkan Tanggal</h3>
+        <div class="right">
+            <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+        </div>
+    </div>
+    <div class="panel-body">
+        <form action="{{ route('pemilik.laporan.cetak.tanggal') }}" method="POST">
+            @csrf
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="tanggal_mulai">Tanggal Mulai</label>
+                        <input type="date" class="form-control" id="tanggal_mulai" aria-describedby="emailHelp"
+                            placeholder="Masukan Tanggal Awal" name="mulai">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="tanggal_akhir">Tanggal Berakhir</label>
+                        <input type="date" class="form-control" id="tanggal_akhir" aria-describedby="emailHelp"
+                            placeholder="Masukan Tanggal Akhir" name="akhir">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <button type="submit" class="btn btn-sm btn-primary">Cetak</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="panel">
+    <div class="panel-heading">
         <h3 class="panel-title">Laporan Transaksi</h3>
         <div class="right">
             <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>

@@ -31,7 +31,7 @@
                     @if (Auth()->User()->role=='admin')
                     <td>{{ $tr->user->name }}</td>
                     @endif
-                    <td><span class="label label-warning">{{ $tr->status_transaksi }}</span></td>
+                    <td><span class="label label-warning">{{ $tr->status_transaksi}}</span></td>
                     <td>
                         @if (Auth()->User()->role=='admin')
                         <a href="{{ url('/admin/pemesanan/produk/'.$tr->id.'/'.$tr->user_id) }}" class="btn btn-sm btn-info">Tambah
@@ -74,6 +74,42 @@
                             </div>
                         </div>
                         <a href="{{ url('/supplier/pesanan/'.$tr->id) }}" class="btn btn-sm btn-info">Detail
+                            Produk</a>
+                        @elseif(Auth()->User()->role=='pembeli')
+                        <a type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                            data-target="#persetujuan">Persetujuan</a>
+                        <div class="modal fade" id="persetujuan" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Persetujuan</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="form-auth-small"
+                                            action="{{ url('/pembelian/pesanan/'.$tr->id.'/persetujuan') }}" method="POST">
+                                            @csrf
+                                            @method('put')
+                                            <div class="form-group">
+                                                <label for="alasan" class="control-label sr-only">Alasan</label>
+                                                <input type="text" class="form-control" id="alasan"
+                                                    placeholder="Masukan Alasan" required name="alasan">
+                                            </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-info" name="approve"
+                                            value="diterima">Setuju</button>
+                                        <button type="submit" class="btn btn-danger" name="approve"
+                                            value="ditolak">Tolak</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ url('/pembelian/pesanan/'.$tr->id) }}" class="btn btn-sm btn-info">Detail
                             Produk</a>
                         @endif
                     </td>

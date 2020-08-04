@@ -35,11 +35,16 @@ class CreateUsersTable extends Migration
                 'email' => 'pg@p.com',
                 'password' => bcrypt('pg'),
                 'role' => 'pg'
-            ],[
+            ], [
                 'name' => 'Pemilik',
                 'email' => 'pemilik@p.com',
                 'password' => bcrypt('pemilik'),
                 'role' => 'pemilik'
+            ], [
+                'name' => 'pembeli',
+                'email' => 'pembeli@p.com',
+                'password' => bcrypt('pembeli'),
+                'role' => 'pembeli'
             ]
         ]);
     }

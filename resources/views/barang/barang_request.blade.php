@@ -2,7 +2,7 @@
 @section('content')
 <div class="panel">
     <div class="panel-heading">
-        <h3 class="panel-title">Barang Request</h3>
+        <h3 class="panel-title">Barang Request Pembelian</h3>
         <div class="right">
             <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
             @if (Auth()->User()->role=='pg')
@@ -41,6 +41,23 @@
                         @endif
                     </td>
                 </tr>
+                @elseif($tr->jenis_transaksi == 'pemesanan' && $tr->status_transaksi=='pemesanan')
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $tr->user->name }}</td>
+                    <td><span class="label label-warning">{{ $tr->status_transaksi }}</span></td>
+                    <td>
+                        @if (Auth()->User()->role=='pg')
+                        <a href="{{ url('/pg/barang_request/produk/'.$tr->id) }}" class="btn btn-sm btn-info">Tambah
+                            Pemintaan Produk</a>
+                        <a href="{{ url('/pg/barang_request/'.$tr->id.'/delete') }}" class="btn btn-sm btn-danger">Hapus
+                            Permintaan</a>
+                        @elseif(Auth()->User()->role=='admin')
+                        <a href="{{ url('/admin/barang_request/'.$tr->id) }}" class="btn btn-sm btn-info">Detail
+                            Produk</a>
+                        @endif
+                    </td>
+                </tr>
                 @endif
                 @endforeach
             </tbody>
@@ -60,7 +77,7 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Nama Supplier</th>
+                    {{-- <th>Nama Supplier</th> --}}
                     <th>Status Permintaan</th>
                     <th>Aksi</th>
                 </tr>
@@ -70,7 +87,7 @@
                 @if ($tr->jenis_transaksi == 'pemesanan' && $tr->status_transaksi=='diterima')
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $tr->user->name }}</td>
+                    {{-- <td>{{ $tr->user->name }}</td> --}}
                     <td><span class="label label-success">{{ $tr->status_transaksi }}</span></td>
                     <td>
                         <a href="{{ url('/pg/barang_keluar/'.$tr->id) }}" class="btn btn-sm btn-info">Detail</a>
@@ -94,7 +111,7 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Nama Supplier</th>
+                    {{-- <th>Nama Supplier</th> --}}
                     <th>Status Permintaan</th>
                     <th>Alasan</th>
                 </tr>
@@ -104,7 +121,7 @@
                 @if ($tr->jenis_transaksi == 'pemesanan' && $tr->status_transaksi=='ditolak')
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $tr->user->name }}</td>
+                    {{-- <td>{{ $tr->user->name }}</td> --}}
                     <td><span class="label label-danger">{{ $tr->status_transaksi }}</span></td>
                     <td><span class="label label-danger">{{ $tr->alasan }}</span></td>
                 </tr>
