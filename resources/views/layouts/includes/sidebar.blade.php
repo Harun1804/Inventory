@@ -7,6 +7,7 @@
                             <li><a href="{{ route('dashboard') }}"><i class="lnr lnr-home"></i> <span>Dashboard</span></a>
                             @if (Auth()->User()->role == 'admin')
                                 <li><a href="{{ route('user.index') }}"><i class="lnr lnr-users"></i> <span>Users</span></a>
+                                <li><a href="{{ route('kategori.index') }}" class=""><i class="lnr lnr-list"></i><span>Kategori</span></a></li>
                             @endif
 		                    {{-- </li>
 		                    @if (Auth()->user()->role == 'pg')

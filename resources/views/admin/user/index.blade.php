@@ -43,6 +43,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $user->links() }}
     </div>
 </div>
 <div class="panel">
@@ -88,6 +89,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $user->links() }}
     </div>
 </div>
 <div class="panel">
@@ -133,6 +135,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $user->links() }}
     </div>
 </div>
 <div class="panel">
@@ -178,6 +181,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $user->links() }}
     </div>
 </div>
 @endsection
