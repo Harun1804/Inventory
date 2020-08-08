@@ -2,18 +2,18 @@
 
 # Tutorial Github
 
-## Repository Belum Ada Di Komputer
+## Download Aplikasi Melalui Github
 
 1. Lakukan Clone Repository
 
 ```
-git clone https://github.com/Harun1804/Aplikasi-Hibah-Barang.git
+git clone https://github.com/Harun1804/Inventory.git
 ```
 
 2. Masuk ke directory
 
 ```
-cd Aplikasi-Hibah-Barang
+cd Inventory
 ```
 
 ### Jika Ada Perubahan File
@@ -42,7 +42,7 @@ git commit -m "Komentar Anda"
 git push origin master
 ```
 
-## Repository Sudah Ada Di Komputer
+## Jika Aplikasi Sudah Ada Dikomputer dan Mendownload Menggunakan git clone
 
 1. Masuk Ke Folder Repository Yang Ada Di Komputer Anda
 2. Mengambil Data Dari Repository
@@ -73,7 +73,7 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-5. Buatlah database kosong di phpmyadmin dengan nama *** db_inventori ***
+5. Buatlah database kosong di phpmyadmin dengan nama **_ db_inventori _**
 6. Kemudian Database Tersebut Atur Di File .env pada bagian DB_DATABASE
 7. Lakukan Migrasi Database
 
