@@ -18,7 +18,7 @@ class CreateProduksTable extends Migration
             $table->string('nama_produk');
             $table->unsignedInteger('stok')->nullable();
             $table->string('deskripsi')->nullable();
-            $table->foreignId('kategori_id')->constrained('kategori');
+            $table->foreignId('kategori_id')->constrained('kategori')->onDelete('cascade');
             $table->timestamps();
         });
     }

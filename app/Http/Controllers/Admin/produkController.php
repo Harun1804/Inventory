@@ -7,7 +7,7 @@ use App\Model\Kategori;
 use App\Model\Produk;
 use Illuminate\Http\Request;
 
-class produkController extends Controller
+class ProdukController extends Controller
 {
     public function index()
     {

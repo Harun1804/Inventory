@@ -36,6 +36,27 @@
                 </div>
             </div>
         </div>
+        @elseif (Auth()->User()->role == 'pg')
+            <div class="row">
+            <div class="col-md-3">
+                <div class="metric">
+                    <span class="icon"><i class="lnr lnr-arrow-left"></i></span>
+                    <p>
+                        <span class="number">{{ $transaksi::where('jenis_transaksi','=','permintaan')->count() }}</span>
+                        <span class="title">Permintaan</span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric">
+                    <span class="icon"><i class="lnr lnr-arrow-right"></i></span>
+                    <p>
+                        <span class="number">{{ $transaksi::where('jenis_transaksi','=','pengiriman')->count() }}</span>
+                        <span class="title">Barang Masuk</span>
+                    </p>
+                </div>
+            </div>
+        </div>
         @endif
         {{-- @if (Auth()->User()->role == 'pg')
         <div class="row">

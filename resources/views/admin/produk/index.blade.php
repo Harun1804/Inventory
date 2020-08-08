@@ -14,6 +14,7 @@
             <thead>
                 <tr>
                     <th>#</th>
+                    <th>Barcode</th>
                     <th>Kategori</th>
                     <th>Nama Produk</th>
                     <th>Deskripsi</th>
@@ -23,6 +24,8 @@
             <tbody>
                 @foreach ($produk as $pr)
                 <tr>
+                    <td>{{ $loop->iteration}}</td>
+                    <td><img src="data:image/png;base64,{{DNS1D::getBarcodePNG($pr->id, 'C39')}}" alt="barcode" /></td>
                     <td>{{ $pr->kategori->nama_kategori }}</td>
                     <td>{{ $pr->nama_produk }}</td>
                     <td>{{ $pr->deskripsi }}</td>

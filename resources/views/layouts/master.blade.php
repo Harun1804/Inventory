@@ -54,6 +54,7 @@
     <script src="{{ asset('assets/scripts/klorofil-common.js') }}"></script>
     <script src="{{ asset('assets/scripts/toastr.js')}}"></script>
     <script src="{{ asset('assets/scripts/sweetalert.js')}}"></script>
+    <script src="{{ asset('assets/scripts/vue.min.js')}}"></script>
     @yield('footer')
     <script>
         @if(session('status'))

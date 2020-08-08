@@ -9,32 +9,23 @@
                                 <li><a href="{{ route('user.index') }}"><i class="lnr lnr-users"></i> <span>Users</span></a>
                                 <li><a href="{{ route('kategori.index') }}" class=""><i class="lnr lnr-list"></i><span>Kategori</span></a></li>
                                 <li><a href="{{ route('produk.index') }}" class=""><i class="lnr lnr-dice"></i><span>Produk</span></a></li>
-                            @endif
-		                    {{-- </li>
-		                    @if (Auth()->user()->role == 'pg')
-		                    <li>
-		                        <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-layers"></i>
-		                            <span>Barang</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-		                        <div id="subPages" class="collapse ">
-		                            <ul class="nav">
-		                                <li><a href="{{ route('pg.cb.index') }}" class="">Cek Barang</a></li>
-		                                <li><a href="{{ route('pg.bm.index') }}" class="">Barang Masuk</a></li>
-		                                <li><a href="{{ route('pg.bk.index') }}" class="">Barang Keluar</a></li>
-		                                <li><a href="{{ route('pg.br.index') }}" class="">Request Barang</a></li>
-		                            </ul>
-		                        </div>
-		                    </li>
-		                    @elseif(Auth()->user()->role == 'admin')
-		                    <li><a href="{{ route('admin.supplier.index') }}" class=""><i class="lnr lnr-user"></i>
-		                    <span>Supplier</span></a></li>
-		                    <li><a href="{{ route('admin.kategori.index') }}" class=""><i class="lnr lnr-list"></i>
-		                            <span>Kategori</span></a></li>
+                            @elseif(Auth()->User()->role == 'pg')
+                                <li>
+		                            <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-layers"></i><span>Barang</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+		                            <div id="subPages" class="collapse ">
+		                                <ul class="nav">
+		                                    <li><a href="{{ route('barang.cek') }}" class="">Cek Barang</a></li>
+		                                    <li><a href="" class="">Barang Masuk</a></li>
+		                                    <li><a href="" class="">Barang Keluar</a></li>
+		                                    <li><a href="{{ route('barang.index') }}" class="">Request Barang</a></li>
+		                                </ul>
+		                            </div>
+                                </li>
+                            @elseif(Auth()->user()->role == 'pc')
+		                    <li><a href="" class=""><i class="lnr lnr-cart"></i><span>Order</span></a></li>
 
-		                    <li><a href="{{ route('admin.pemesanan.index') }}" class=""><i class="lnr lnr-cart"></i>
-		                    <span>Pemesanan</span></a></li>
-		                    <li><a href="{{ route('admin.br.index') }}" class=""><i class="lnr lnr-sync"></i>
-		                            <span>Permintaan</span></a></li>
-		                    <li><a href="#" class=""><i class="lnr lnr-cart"></i> <span>Pembelian</span></a></li>
+                            @endif
+		                    {{--
 		                    @elseif(Auth()->user()->role == 'supplier')
                         <li><a href="{{ route('supplier.pesanan.index') }}" class=""><i class="lnr lnr-cart"></i>
 		                    <span>Pesanan</span></a></li>

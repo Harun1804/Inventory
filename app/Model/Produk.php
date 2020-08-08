@@ -13,4 +13,9 @@ class Produk extends Model
     {
         return $this->belongsTo(Kategori::class);
     }
+
+    public function detailtransaksi()
+    {
+        return $this->hasOne(DetailPermintaan::class);
+    }
 }
