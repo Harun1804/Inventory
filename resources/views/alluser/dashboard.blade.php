@@ -6,6 +6,37 @@
         <p class="panel-subtitle"></p>
     </div>
     <div class="panel-body">
+        @if (Auth()->User()->role == 'admin')
+            <div class="row">
+            <div class="col-md-3">
+                <div class="metric">
+                    <span class="icon"><i class="lnr lnr-users"></i></span>
+                    <p>
+                        <span class="number">{{ $user->count() }}</span>
+                        <span class="title">User</span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric">
+                    <span class="icon"><i class="lnr lnr-list"></i></span>
+                    <p>
+                        <span class="number">{{ $kategori->count() }}</span>
+                        <span class="title">Kategori</span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric">
+                    <span class="icon"><i class="lnr lnr-dice"></i></span>
+                    <p>
+                        <span class="number">{{ $produk->count() }}</span>
+                        <span class="title">Produk</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        @endif
         {{-- @if (Auth()->User()->role == 'pg')
         <div class="row">
             <div class="col-md-3">

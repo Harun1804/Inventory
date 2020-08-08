@@ -8,6 +8,7 @@
                             @if (Auth()->User()->role == 'admin')
                                 <li><a href="{{ route('user.index') }}"><i class="lnr lnr-users"></i> <span>Users</span></a>
                                 <li><a href="{{ route('kategori.index') }}" class=""><i class="lnr lnr-list"></i><span>Kategori</span></a></li>
+                                <li><a href="{{ route('produk.index') }}" class=""><i class="lnr lnr-dice"></i><span>Produk</span></a></li>
                             @endif
 		                    {{-- </li>
 		                    @if (Auth()->user()->role == 'pg')
@@ -28,8 +29,7 @@
 		                    <span>Supplier</span></a></li>
 		                    <li><a href="{{ route('admin.kategori.index') }}" class=""><i class="lnr lnr-list"></i>
 		                            <span>Kategori</span></a></li>
-		                    <li><a href="{{ route('admin.produk.index') }}" class=""><i class="lnr lnr-dice"></i>
-		                            <span>Produk</span></a></li>
+
 		                    <li><a href="{{ route('admin.pemesanan.index') }}" class=""><i class="lnr lnr-cart"></i>
 		                    <span>Pemesanan</span></a></li>
 		                    <li><a href="{{ route('admin.br.index') }}" class=""><i class="lnr lnr-sync"></i>

@@ -26,4 +26,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/admin/user', 'Admin\UserController');
     //Kategori
     Route::resource('/admin/kategori', 'Admin\kategoriController');
+    //Produk
+    Route::resource('/admin/produk', 'Admin\ProdukController');
 });
