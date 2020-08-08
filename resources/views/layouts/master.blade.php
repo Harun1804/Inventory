@@ -53,10 +53,14 @@
     <script src="{{ asset('assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
     <script src="{{ asset('assets/scripts/klorofil-common.js') }}"></script>
     <script src="{{ asset('assets/scripts/toastr.js')}}"></script>
+    <script src="{{ asset('assets/scripts/sweetalert.js')}}"></script>
     @yield('footer')
     <script>
         @if(session('status'))
         toastr.success("{{ session('status') }}")
+        @endif
+        @if(session('error'))
+        toastr.error("{{ session('error') }}")
         @endif
     </script>
 </body>

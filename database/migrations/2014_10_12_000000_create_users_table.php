@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateUsersTable extends Migration
@@ -19,9 +20,33 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('role');
             $table->rememberToken();
             $table->timestamps();
         });
+        DB::table('users')->insert([
+            [
+                'name' => 'Administrator',
+                'email' => 'admin@p.com',
+                'password' => bcrypt('admin'),
+                'role' => 'admin'
+            ], [
+                'name' => 'Petugas Gudang',
+                'email' => 'pg@p.com',
+                'password' => bcrypt('pg'),
+                'role' => 'pg'
+            ], [
+                'name' => 'Pemilik',
+                'email' => 'pemilik@p.com',
+                'password' => bcrypt('pemilik'),
+                'role' => 'pemilik'
+            ], [
+                'name' => 'Purchasing',
+                'email' => 'pc@p.com',
+                'password' => bcrypt('pc'),
+                'role' => 'pc'
+            ]
+        ]);
     }
 
     /**

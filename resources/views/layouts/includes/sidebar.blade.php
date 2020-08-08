@@ -4,8 +4,8 @@
 		        <div class="sidebar-scroll" style="overflow: hidden; width: auto; height: 95%;">
 		            <nav>
 		                <ul class="nav">
-		                    {{-- <li><a href="{{ route('dashboard') }}"><i class="lnr lnr-home"></i> <span>Dashboard</span></a>
-		                    </li>
+		                    <li><a href="{{ route('dashboard') }}"><i class="lnr lnr-home"></i> <span>Dashboard</span></a>
+		                    {{-- </li>
 		                    @if (Auth()->user()->role == 'pg')
 		                    <li>
 		                        <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-layers"></i>
