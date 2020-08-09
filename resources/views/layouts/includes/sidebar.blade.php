@@ -15,7 +15,7 @@
 		                            <div id="subPages" class="collapse ">
 		                                <ul class="nav">
 		                                    <li><a href="{{ route('barang.cek') }}" class="">Cek Barang</a></li>
-		                                    <li><a href="" class="">Barang Masuk</a></li>
+		                                    <li><a href="{{ route('barang.masuk') }}" class="">Barang Masuk</a></li>
 		                                    <li><a href="" class="">Barang Keluar</a></li>
 		                                    <li><a href="{{ route('barang.index') }}" class="">Request Barang</a></li>
 		                                </ul>
@@ -23,21 +23,10 @@
                                 </li>
                             @elseif(Auth()->user()->role == 'pc')
 		                    <li><a href="{{ route('permintaan.index') }}" class=""><i class="lnr lnr-cart"></i><span>Order</span></a></li>
-		                    <li><a href="{{ route('supplier.index') }}" class=""><i class="lnr lnr-user"></i><span>Supplier</span></a></li>
+                            <li><a href="{{ route('supplier.index') }}" class=""><i class="lnr lnr-user"></i><span>Supplier</span></a></li>
+                            @elseif(Auth()->user()->role == 'pemilik')
+                                <li><a href="" class=""><i class="lnr lnr-file-empty"></i><span>Laporan</span></a></li>
                             @endif
-		                    {{--
-		                    @elseif(Auth()->user()->role == 'supplier')
-                        <li><a href="{{ route('supplier.pesanan.index') }}" class=""><i class="lnr lnr-cart"></i>
-		                    <span>Pesanan</span></a></li>
-		                    <li><a href="{{ route('supplier.produk.index') }}" class=""><i class="lnr lnr-dice"></i>
-		                            <span>Produk</span></a></li>
-		                    @elseif(Auth()->user()->role == 'pemilik')
-		                    <li><a href="{{ route('pemilik.laporan.index') }}" class=""><i class="lnr lnr-file-empty"></i>
-		                            <span>Laporan</span></a></li>
-		                    @elseif(Auth()->user()->role == 'pembeli')
-		                    <li><a href="{{ route('pembelian.pesanan.index') }}" class=""><i class="lnr lnr-cart"></i>
-		                            <span>Order</span></a></li>
-		                    @endif --}}
 		                </ul>
 		            </nav>
 		        </div>

@@ -5,9 +5,9 @@
         <h3 class="panel-title">Detail Request Barang</h3>
         <div class="right">
             <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
-            @if (Auth()->User()->role == 'pg')
+            @if (Auth()->User()->role == 'pg' && $transaksi->status_transaksi == 'menunggu')
             <button class="btn-toggle-minified" data-toggle="modal" data-target="#produk"><i class="lnr lnr-plus-circle"></i></button>
-            @elseif(Auth()->User()->role == 'pc')
+            @elseif(Auth()->User()->role == 'pc' && $transaksi->status_transaksi == 'diterima')
             <button class="btn-toggle-minified cetak" id="{{ $id }}"><i class="lnr lnr-printer"></i></button>
             @endif
         </div>
@@ -19,7 +19,9 @@
                     <th>#</th>
                     <th>Nama Barang</th>
                     <th>Jumlah Permintaan</th>
+                    @if(Auth()->User()->role == 'pc' && $transaksi->status_transaksi == 'diterima')
                     <th>Aksi</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -29,10 +31,10 @@
                     <td>{{ $dt->produk->nama_produk }}</td>
                     <td>{{ $dt->jumlah_permintaan }}</td>
                     <td>
-                        @if (Auth()->User()->role == 'pg')
+                        @if (Auth()->User()->role == 'pg' && $dt->status_produk == 0)
                         <a href="{{ url('/petugas/permintaan/detail/'.$dt->id) }}" class="btn btn-sm btn-warning">Edit</a>
                         <a class="btn btn-sm btn-danger delete" id="{{ $dt->id }}">Delete</a>
-                        @elseif(Auth()->User()->role == 'pc' && $dt->status_produk == 0)
+                        @elseif(Auth()->User()->role == 'pc' && $dt->status_produk == 0 && $dt->transaksi->status_transaksi == 'diterima')
                         <a type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                             data-target="#kirim">Kirim</a>
                         <div class="modal fade" id="kirim" tabindex="-1" role="dialog"

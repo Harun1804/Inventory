@@ -42,7 +42,7 @@
                 <div class="metric">
                     <span class="icon"><i class="lnr lnr-arrow-left"></i></span>
                     <p>
-                        <span class="number">{{ $transaksi::where('jenis_transaksi','=','permintaan')->where('jenis_transaksi','=','permintaan')->count() }}</span>
+                        <span class="number">{{ $transaksi::where('jenis_transaksi','=','permintaan')->where('status_transaksi','=','menunggu')->count() }}</span>
                         <span class="title">Permintaan</span>
                     </p>
                 </div>
@@ -51,7 +51,7 @@
                 <div class="metric">
                     <span class="icon"><i class="lnr lnr-arrow-right"></i></span>
                     <p>
-                        <span class="number">{{ $transaksi::where('jenis_transaksi','=','pengiriman')->count() }}</span>
+                        <span class="number">{{ $detail::where('jumlah_dikirim','!=',null)->where('rak','=',null)->count() }}</span>
                         <span class="title">Barang Masuk</span>
                     </p>
                 </div>

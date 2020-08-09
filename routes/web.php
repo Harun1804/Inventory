@@ -36,6 +36,11 @@ Route::group(['middleware' => ['auth']], function () {
     //Petugas Gudang
     //Cek Barang
     Route::get('/petugas/cekBarang', 'Barang\BarangController@cekBarang')->name('barang.cek');
+    //barang masuk
+    Route::get('/petugas/barang/masuk', 'Barang\BarangController@barangMasuk')->name('barang.masuk');
+    Route::get('/petugas/barang/masuk/invoice', 'Barang\BarangController@cetakInvoice')->name('barang.masuk.invoice');
+    Route::get('/petugas/barang/masuk/{id}', 'Barang\BarangController@rak')->name('barang.masuk.rak');
+    Route::put('/petugas/barang/masuk/{id}', 'Barang\BarangController@updateRak')->name('barang.masuk.rak.update');
     //Permintaan
     Route::get('/petugas/permintaan', 'Barang\RequestController@index')->name('barang.index');
     Route::get('/petugas/permintaan/create', 'Barang\RequestController@create')->name('barang.create');

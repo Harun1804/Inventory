@@ -15,10 +15,10 @@ class CreateProduksTable extends Migration
     {
         Schema::create('produk', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_produk');
-            $table->unsignedInteger('stok')->nullable();
+            $table->string('nama_produk')->nullable();
+            $table->unsignedInteger('stok')->default('0');
             $table->string('deskripsi')->nullable();
-            $table->foreignId('kategori_id')->constrained('kategori')->onDelete('cascade');
+            $table->foreignId('kategori_id')->nullable()->constrained('kategori')->onDelete('cascade');
             $table->timestamps();
         });
     }

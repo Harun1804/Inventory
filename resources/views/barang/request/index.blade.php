@@ -151,7 +151,7 @@
                     <td><span class="label label-success">{{ $tr->status_transaksi }}</span></td>
                     <td>{{ $tr->updated_at }}</td>
                     <td>
-                        <a href="{{ url('/petugas/barang'.$tr->id) }}" class="btn btn-sm btn-info">Detail</a>
+                        <a href="{{ url('/petugas/permintaan/'.$tr->id) }}" class="btn btn-sm btn-info">Detail</a>
                     </td>
                 </tr>
                 @endif

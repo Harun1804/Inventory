@@ -33,8 +33,9 @@ class RequestController extends Controller
     public function show($id)
     {
         $detailtransaksi = DetailPermintaan::where('transaksi_id', $id)->get();
+        $transaksi = Transaksi::where('id', $id)->first();
         $produk = Produk::all();
-        return view('barang.request.detail', compact(['detailtransaksi', 'id', 'produk']));
+        return view('barang.request.detail', compact(['detailtransaksi', 'id', 'produk', 'transaksi']));
     }
 
     public function createDetail(Request $request)

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\DetailPermintaan;
 use App\Model\Kategori;
 use App\Model\Produk;
 use App\Model\Supplier;
@@ -18,6 +19,7 @@ class DashboardController extends Controller
         $produk = new Produk;
         $transaksi = new Transaksi;
         $supplier = new Supplier;
-        return view('alluser.dashboard', compact(['user', 'kategori', 'produk', 'transaksi', 'supplier']));
+        $detail = new DetailPermintaan;
+        return view('alluser.dashboard', compact(['user', 'kategori', 'produk', 'transaksi', 'supplier', 'detail']));
     }
 }
