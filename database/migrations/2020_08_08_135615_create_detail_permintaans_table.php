@@ -16,7 +16,9 @@ class CreateDetailPermintaansTable extends Migration
         Schema::create('detail_permintaan', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('jumlah_permintaan');
+            $table->unsignedInteger('jumlah_dikirim')->nullable();
             $table->unsignedInteger('status_produk');
+            $table->string('rak')->nullable();
             $table->foreignId('transaksi_id')->constrained('transaksi')->onDelete('cascade');
             $table->foreignId('produk_id')->constrained('produk')->onDelete('cascade');
             $table->timestamps();

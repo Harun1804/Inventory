@@ -5,7 +5,11 @@
         <h3 class="panel-title">Detail Request Barang</h3>
         <div class="right">
             <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+            @if (Auth()->User()->role == 'pg')
             <button class="btn-toggle-minified" data-toggle="modal" data-target="#produk"><i class="lnr lnr-plus-circle"></i></button>
+            @elseif(Auth()->User()->role == 'pc')
+            <button class="btn-toggle-minified cetak" id="{{ $id }}"><i class="lnr lnr-printer"></i></button>
+            @endif
         </div>
     </div>
     <div class="panel-body no-padding">
@@ -25,9 +29,53 @@
                     <td>{{ $dt->produk->nama_produk }}</td>
                     <td>{{ $dt->jumlah_permintaan }}</td>
                     <td>
+                        @if (Auth()->User()->role == 'pg')
                         <a href="{{ url('/petugas/permintaan/detail/'.$dt->id) }}" class="btn btn-sm btn-warning">Edit</a>
                         <a class="btn btn-sm btn-danger delete" id="{{ $dt->id }}">Delete</a>
+                        @elseif(Auth()->User()->role == 'pc' && $dt->status_produk == 0)
+                        <a type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                            data-target="#kirim">Kirim</a>
+                        <div class="modal fade" id="kirim" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Kirim Barang</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="form-auth-small"
+                                            action="{{ url('/pc/permintaan/'.$dt->id.'/kirim') }}" method="POST">
+                                            @csrf
+                                            @method('put')
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="jumlah_dikirim" class="control-label sr-only">Jumlah Permintaan</label>
+                                                        <input type="text" class="form-control" id="jumlah_dikirim"
+                                                        placeholder="Masukan Jumlah Pengiriman" readonly value="{{ $dt->jumlah_permintaan }}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="jumlah_dikirim" class="control-label sr-only">Jumlah Barang</label>
+                                                        <input type="text" class="form-control" id="jumlah_dikirim"
+                                                        placeholder="Masukan Jumlah Yang Akan Dikirm" required name="jumlah_dikirim">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-info">kirim</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </td>
+                        @endif
                 </tr>
                 @empty
                 <tr>
@@ -42,6 +90,8 @@
             <div class="col-md-6"><span class="panel-note"></span></div>
             @if (Auth()->User()->role == 'pg')
             <div class="col-md-6 text-right"><a href="{{ route('barang.index') }}" class="btn btn-primary">Back</a></div>
+            @elseif(Auth()->User()->role == 'pc')
+            <div class="col-md-6 text-right"><a href="{{ route('permintaan.index') }}" class="btn btn-primary">Back</a></div>
             @endif
         </div>
     </div>
@@ -64,8 +114,13 @@
                 }
             });
         });
+        $('.cetak').click(function(){
+            var id = $(this).attr('id');
+            window.location = "/pc/permintaan/"+id+"/cetak";
+        })
     </script>
 @endsection
+@if (Auth()->User()->role == 'pg')
 <div class="modal fade" id="produk" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -96,3 +151,4 @@
         </div>
     </div>
 </div>
+@endif

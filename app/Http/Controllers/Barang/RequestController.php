@@ -5,16 +5,19 @@ namespace App\Http\Controllers\Barang;
 use App\Http\Controllers\Controller;
 use App\Model\DetailPermintaan;
 use App\Model\Produk;
+use App\Model\Supplier;
 use App\Model\Transaksi;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use PDF;
+
 
 class RequestController extends Controller
 {
     public function index()
     {
         $transaksi = Transaksi::orderBy('id', 'desc')->paginate(10);
-        return view('barang.request.index', compact('transaksi'));
+        $supplier = Supplier::all();
+        return view('barang.request.index', compact(['transaksi', 'supplier']));
     }
 
     public function create()
@@ -71,5 +74,33 @@ class RequestController extends Controller
     {
         Transaksi::where('id', $id)->delete();
         return redirect(route('barang.index'))->with('status', 'Permintaan Telah dihapus');
+    }
+
+    public function persetujuan(Request $request, $id)
+    {
+        $transaksi = Transaksi::where('id', '=', $id);
+        $transaksi->update([
+            'status_transaksi' => $request->approve,
+            'alasan' => $request->alasan,
+            'supplier_id' => $request->supplier_id
+        ]);
+        return redirect(route('permintaan.index'))->with('status', 'Persetujuan Telah Dikirm');
+    }
+
+    public function kirim(Request $request, $id)
+    {
+        $transaksi = DetailPermintaan::where('id', '=', $id);
+        $transaksi->update([
+            'jumlah_dikirim' => $request->jumlah_dikirim,
+            'status_produk' => 1
+        ]);
+        return redirect()->back()->with('status', 'Barang Telah Dikirm');
+    }
+
+    public function cetakfaktur($id)
+    {
+        $dtransaksi = DetailPermintaan::where('transaksi_id', '=', $id)->where('status_produk', '=', 1)->get();
+        $pdf = PDF::loadView('export/faktur', ['dtransaksi' => $dtransaksi]);
+        return $pdf->download('Faktur.pdf');
     }
 }

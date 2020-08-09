@@ -22,8 +22,8 @@
 		                            </div>
                                 </li>
                             @elseif(Auth()->user()->role == 'pc')
-		                    <li><a href="" class=""><i class="lnr lnr-cart"></i><span>Order</span></a></li>
-
+		                    <li><a href="{{ route('permintaan.index') }}" class=""><i class="lnr lnr-cart"></i><span>Order</span></a></li>
+		                    <li><a href="{{ route('supplier.index') }}" class=""><i class="lnr lnr-user"></i><span>Supplier</span></a></li>
                             @endif
 		                    {{--
 		                    @elseif(Auth()->user()->role == 'supplier')

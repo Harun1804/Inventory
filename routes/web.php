@@ -19,7 +19,11 @@ Route::get('/logout', 'AuthController@logout')->name('logout');
 
 Route::group(['middleware' => ['auth']], function () {
     //all user
+    //Dashboard
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+    //Permintaan
+    Route::get('/permintaan', 'Barang\RequestController@index')->name('permintaan.index');
+    Route::get('/permintaan/{id}', 'Barang\RequestController@show')->name('permintaan.detail');
 
     //admin
     //user
@@ -41,4 +45,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/petugas/permintaan/detail/{id}/update', 'Barang\RequestController@updateDetail')->name('barang.detail.update');
     Route::get('/petugas/permintaan/detail/{id}/delete', 'Barang\RequestController@deleteDetail')->name('barang.detail.delete');
     Route::get('/petugas/permintaan/{id}/delete', 'Barang\RequestController@destroy')->name('barang.delete');
+
+    //Purchasing
+    //Permintaan
+    Route::put('/pc/permintaan/{id}/persetujuan', 'Barang\RequestController@persetujuan')->name('permintaan.persetujuan');
+    Route::put('/pc/permintaan/{id}/kirim', 'Barang\RequestController@kirim')->name('permintaan.kirim');
+    Route::get('/pc/permintaan/{id}/cetak', 'Barang\RequestController@cetakfaktur')->name('permintaan.cetak');
+    //Supplier
+    Route::resource('/pc/supplier', 'SupplierController');
 });

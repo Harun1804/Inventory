@@ -15,7 +15,11 @@ class AuthController extends Controller
     public function validasi(Request $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect(route('dashboard'));
+            if (Auth()->User()->role == 'supplier') {
+                return redirect(route('login'))->with('status', 'Maaf Anda Tidak Memiliki Hak Akses');
+            } else {
+                return redirect(route('dashboard'));
+            }
         } else {
             return redirect(route('login'))->with('error', 'Gagal Login! Cek Kembali Username dan Password Anda!');
         }
