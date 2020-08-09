@@ -43,7 +43,11 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $user->links() }}
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md">{{ $user->links() }}</div>
+        </div>
     </div>
 </div>
 <div class="panel">
@@ -89,7 +93,11 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $user->links() }}
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md">{{ $user->links() }}</div>
+        </div>
     </div>
 </div>
 <div class="panel">
@@ -135,7 +143,11 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $user->links() }}
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md">{{ $user->links() }}</div>
+        </div>
     </div>
 </div>
 <div class="panel">
@@ -181,7 +193,11 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $user->links() }}
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md">{{ $user->links() }}</div>
+        </div>
     </div>
 </div>
 @endsection

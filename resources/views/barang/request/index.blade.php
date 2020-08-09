@@ -86,6 +86,11 @@
             </tbody>
         </table>
     </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md">{{ $transaksi->links() }}</div>
+        </div>
+    </div>
 </div>
 @if (Auth()->User()->role == 'pc')
 <div class="panel">
@@ -123,6 +128,11 @@
             </tbody>
         </table>
     </div>
+        <div class="panel-footer">
+        <div class="row">
+            <div class="col-md">{{ $transaksi->links() }}</div>
+        </div>
+    </div>
 </div>
 @endif
 @if (Auth()->User()->role=='pg')
@@ -159,6 +169,11 @@
             </tbody>
         </table>
     </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md">{{ $transaksi->links() }}</div>
+        </div>
+    </div>
 </div>
 <div class="panel">
     <div class="panel-heading">
@@ -190,6 +205,11 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md">{{ $transaksi->links() }}</div>
+        </div>
     </div>
 </div>
 @endif

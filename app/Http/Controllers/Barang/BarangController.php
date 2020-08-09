@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Barang;
 use App\Http\Controllers\Controller;
 use App\Model\DetailPermintaan;
 use App\Model\Kategori;
+use App\Model\Produk;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -13,12 +14,13 @@ class BarangController extends Controller
     public function cekBarang()
     {
         $kategori = Kategori::all();
-        return view('barang.cek', compact('kategori'));
+        $produk = Produk::orderBy('kategori_id', 'asc')->paginate(10);
+        return view('barang.cek', compact(['kategori', 'produk']));
     }
 
     public function barangMasuk()
     {
-        $detailtransaksi = DetailPermintaan::orderBy('id', 'desc')->where('jumlah_dikirim', '!=', null)->get();
+        $detailtransaksi = DetailPermintaan::orderBy('id', 'desc')->where('jumlah_dikirim', '!=', null)->paginate(10);
         return view('barang.masuk.masuk', compact(['detailtransaksi']));
     }
 

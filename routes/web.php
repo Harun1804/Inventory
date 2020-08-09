@@ -58,4 +58,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/pc/permintaan/{id}/cetak', 'Barang\RequestController@cetakfaktur')->name('permintaan.cetak');
     //Supplier
     Route::resource('/pc/supplier', 'SupplierController');
+
+    //pemilik
+    //laporan
+    Route::get('/pemilik/laporan', 'PemilikController@index')->name('pemilik.laporan');
+    Route::get('/pemilik/laporan/cetak', 'PemilikController@cetakDiterima')->name('pemilik.laporan.cetak');
+    Route::post('/pemilik/laporan/filter', 'PemilikController@filter')->name('pemilik.laporan.filter');
+    Route::get('/pemilik/laporan/filter/{mulai}/{akhir}', 'PemilikController@cetakFilter')->name('pemilik.laporan.cetak.filter');
 });

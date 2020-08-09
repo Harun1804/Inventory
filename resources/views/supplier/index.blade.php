@@ -35,7 +35,11 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $supplier->links() }}
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md">{{ $supplier->links() }}</div>
+        </div>
     </div>
 </div>
 @endsection

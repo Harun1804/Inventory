@@ -32,7 +32,7 @@ class RequestController extends Controller
 
     public function show($id)
     {
-        $detailtransaksi = DetailPermintaan::where('transaksi_id', $id)->get();
+        $detailtransaksi = DetailPermintaan::where('transaksi_id', $id)->paginate(10);
         $transaksi = Transaksi::where('id', $id)->first();
         $produk = Produk::all();
         return view('barang.request.detail', compact(['detailtransaksi', 'id', 'produk', 'transaksi']));

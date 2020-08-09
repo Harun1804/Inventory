@@ -1,6 +1,6 @@
 @extends('layouts/master')
 @section('content')
-<div class="panel">
+{{-- <div class="panel">
     <div class="panel-heading">
         <h3 class="panel-title">Pengecekan Barang Berdasarkan Kategori</h3>
     </div>
@@ -18,7 +18,7 @@
             </div>
         </form>
     </div>
-</div>
+</div> --}}
 <div class="panel">
     <div class="panel-heading">
         <h3 class="panel-title">Tabel Barang</h3>
@@ -31,20 +31,28 @@
             <thead>
                 <tr>
                     <th>#</th>
+                    <th>Nama Kategori</th>
                     <th>Nama Barang</th>
                     <th>Jumlah Barang</th>
                     <th>Rak</th>
                 </tr>
             </thead>
             <tbody>
-
+                @foreach ($produk as $pr)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $pr->kategori->nama_kategori }}</td>
+                    <td>{{ $pr->nama_produk }}</td>
+                    <td>{{ $pr->stok }}</td>
+                    <td>{{ $pr->detailtransaksi->rak }}</td>
+                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
     <div class="panel-footer">
         <div class="row">
-            <div class="col-md-6"></div>
-            <div class="col-md-6 text-right"></div>
+            <div class="col-md">{{ $produk->links() }}</div>
         </div>
     </div>
 </div>

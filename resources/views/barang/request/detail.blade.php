@@ -89,7 +89,7 @@
     </div>
     <div class="panel-footer">
         <div class="row">
-            <div class="col-md-6"><span class="panel-note"></span></div>
+            <div class="col-md-6">{{ $detailtransaksi->links() }}</div>
             @if (Auth()->User()->role == 'pg')
             <div class="col-md-6 text-right"><a href="{{ route('barang.index') }}" class="btn btn-primary">Back</a></div>
             @elseif(Auth()->User()->role == 'pc')

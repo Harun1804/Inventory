@@ -39,6 +39,11 @@
             </tbody>
         </table>
     </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md">{{ $detailtransaksi->links() }}</div>
+        </div>
+    </div>
 </div>
 <div class="panel">
     <div class="panel-heading">
@@ -76,6 +81,11 @@
                 @endforelse
             </tbody>
         </table>
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md">{{ $detailtransaksi->links() }}</div>
+        </div>
     </div>
 </div>
 @endsection

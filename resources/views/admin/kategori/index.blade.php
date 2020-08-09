@@ -41,7 +41,11 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $kategori->links() }}
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md">{{ $kategori->links() }}</div>
+        </div>
     </div>
 </div>
 @endsection

@@ -16,7 +16,6 @@
 		                                <ul class="nav">
 		                                    <li><a href="{{ route('barang.cek') }}" class="">Cek Barang</a></li>
 		                                    <li><a href="{{ route('barang.masuk') }}" class="">Barang Masuk</a></li>
-		                                    <li><a href="" class="">Barang Keluar</a></li>
 		                                    <li><a href="{{ route('barang.index') }}" class="">Request Barang</a></li>
 		                                </ul>
 		                            </div>
@@ -25,7 +24,7 @@
 		                    <li><a href="{{ route('permintaan.index') }}" class=""><i class="lnr lnr-cart"></i><span>Order</span></a></li>
                             <li><a href="{{ route('supplier.index') }}" class=""><i class="lnr lnr-user"></i><span>Supplier</span></a></li>
                             @elseif(Auth()->user()->role == 'pemilik')
-                                <li><a href="" class=""><i class="lnr lnr-file-empty"></i><span>Laporan</span></a></li>
+                                <li><a href="{{ route('pemilik.laporan') }}" class=""><i class="lnr lnr-file-empty"></i><span>Laporan</span></a></li>
                             @endif
 		                </ul>
 		            </nav>
