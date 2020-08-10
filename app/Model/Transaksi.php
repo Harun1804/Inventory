@@ -3,6 +3,8 @@
 namespace App\Model;
 
 use App\User;
+use App\Model\Supplier;
+use App\Model\DetailPermintaan;
 use Illuminate\Database\Eloquent\Model;
 
 class Transaksi extends Model

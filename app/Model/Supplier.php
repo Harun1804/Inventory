@@ -4,6 +4,7 @@ namespace App\Model;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use App\Model\Transaksi;
 
 class Supplier extends Model
 {
