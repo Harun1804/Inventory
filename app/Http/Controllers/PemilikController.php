@@ -24,7 +24,7 @@ class PemilikController extends Controller
 
     public function filter(Request $request)
     {
-        $transaksi = Transaksi::where('created_at', '>=', $request->mulai)->where('created_at', '<=', $request->akhir)->paginate(10);
+        $transaksi = Transaksi::whereBetween('created_at',[$request->mulai, $request->akhir])->paginate(10);
         $mulai = $request->mulai;
         $akhir = $request->akhir;
         return view('pemilik.filter', compact(['transaksi', 'mulai', 'akhir']));
