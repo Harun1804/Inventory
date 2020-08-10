@@ -90,10 +90,15 @@ class RequestController extends Controller
 
     public function kirim(Request $request, $id)
     {
-        $transaksi = DetailPermintaan::where('id', '=', $id);
+        $transaksi = DetailPermintaan::where('id', '=', $id)->first();
         $transaksi->update([
             'jumlah_dikirim' => $request->jumlah_dikirim,
             'status_produk' => 1
+        ]);
+        $produk = Produk::where('id', $transaksi->produk_id)->first();
+        $stok = $produk->stok;
+        $coba=$produk->update([
+            'stok' => $stok + $request->jumlah_dikirim
         ]);
         return redirect()->back()->with('status', 'Barang Telah Dikirm');
     }

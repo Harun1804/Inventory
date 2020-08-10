@@ -14,14 +14,14 @@ class CreateTrigger extends Migration
      */
     public function up()
     {
-        DB::unprepared('
-        CREATE TRIGGER barang_datang after UPDATE ON detail_permintaan
-	        FOR EACH ROW BEGIN
-	        INSERT INTO produk SET
-	        id = new.produk_id, stok=New.jumlah_dikirim
-	        ON DUPLICATE KEY UPDATE stok=stok+New.jumlah_dikirim;
-	    END
-        ');
+        // DB::unprepared('
+        // CREATE TRIGGER barang_datang after UPDATE ON detail_permintaan
+        //     FOR EACH ROW BEGIN
+        //     INSERT INTO produk SET
+        //     id = new.produk_id, stok=New.jumlah_dikirim
+        //     ON DUPLICATE KEY UPDATE stok=stok+New.jumlah_dikirim;
+        // END
+        // ');
     }
 
     /**
