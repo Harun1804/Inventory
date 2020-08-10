@@ -11,11 +11,11 @@ class DetailPermintaan extends Model
 
     public function produk()
     {
-        return $this->hasMany(Produk::class);
+        return $this->belongsTo(Produk::class);
     }
 
     public function transaksi()
     {
-        return $this->hasMany(Transaksi::class);
+        return $this->belongsTo(Transaksi::class);
     }
 }
