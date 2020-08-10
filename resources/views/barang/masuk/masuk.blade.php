@@ -59,7 +59,7 @@
                 <tr>
                     <th>#</th>
                     <th>Nama Barang</th>
-                    <th>Jumlah Barang</th>
+                    <th>Jumlah Barang Dikirim</th>
                     <th>Tanggal Barang Tiba</th>
                 </tr>
             </thead>
