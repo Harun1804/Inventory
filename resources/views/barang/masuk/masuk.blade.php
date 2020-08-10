@@ -13,7 +13,7 @@
                 <tr>
                     <th>#</th>
                     <th>Nama Barang</th>
-                    <th>Jumlah Barang Dikirm</th>
+                    <th>Jumlah Barang Dikirim</th>
                     <th>Tanggal Barang Tiba</th>
                     <th>Aksi</th>
                 </tr>
