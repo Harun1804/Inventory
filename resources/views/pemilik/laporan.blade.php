@@ -52,7 +52,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($transaksi as $tr)
+                @forelse ($transaksi as $tr)
                 @if ($tr->status_transaksi == 'diterima')
                 <tr>
                     <td>{{ $loop->iteration }}</td>
@@ -62,7 +62,11 @@
                     <td>{{ $tr->created_at->format('d-m-Y') }}</td>
                 </tr>
                 @endif
-                @endforeach
+                @empty
+                <tr>
+                    <td colspan="5" style="text-align: center">Belum Ada Data</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

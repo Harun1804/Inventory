@@ -38,7 +38,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($produk as $pr)
+                @forelse ($produk as $pr)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $pr->kategori->nama_kategori }}</td>
@@ -46,7 +46,11 @@
                     <td>{{ $pr->stok }}</td>
                     <td>{{ $pr->detailtransaksi->rak }}</td>
                 </tr>
-                @endforeach
+                @empty
+                <tr>
+                    <td colspan="5" style="text-align: center">Belum Ada Data</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
