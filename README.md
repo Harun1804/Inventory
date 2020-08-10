@@ -30,7 +30,7 @@ git status
 git add .
 ```
 
-3. Lakukan Commit Untuk Jika Tidak Ada Perubahan
+3. Lakukan Commit Untuk Jika Ada Perubahan
 
 ```
 git commit -m "Komentar Anda"
@@ -73,7 +73,7 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-5. Buatlah database kosong di phpmyadmin dengan nama **_ db_inventori _**
+5. Buatlah database kosong di phpmyadmin dengan nama ***db_inventori***
 6. Kemudian Database Tersebut Atur Di File .env pada bagian DB_DATABASE
 7. Lakukan Migrasi Database
 
