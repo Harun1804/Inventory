@@ -30,7 +30,7 @@ git status
 git add .
 ```
 
-3. Lakukan Commit Untuk Jika Ada Perubahan
+3. Lakukan Commit Jika Ada Perubahan
 
 ```
 git commit -m "Komentar Anda"
