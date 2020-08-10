@@ -3,6 +3,9 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Model\Produk;
+use App\Model\Transaksi;
+
 
 class DetailPermintaan extends Model
 {
