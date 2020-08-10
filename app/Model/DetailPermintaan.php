@@ -11,7 +11,7 @@ class DetailPermintaan extends Model
 
     public function produk()
     {
-        return $this->belongsTo(Produk::class);
+        return $this->hasMany(Produk::class);
     }
 
     public function transaksi()
