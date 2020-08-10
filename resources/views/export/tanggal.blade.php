@@ -21,6 +21,7 @@
             <th>Nama Supplier</th>
             <th>Nama Produk</th>
             <th>Jumlah Produk</th>
+            <th>Keterangan</th>
         </tr>
     </thead>
     <tbody>
@@ -30,6 +31,7 @@
                 <td>{{ $dt->transaksi->supplier->user->name }}</td>
                 <td>{{ $dt->produk->nama_produk}}</td>
                 <td>{{ $dt->jumlah_dikirim}}</td>
+                <td>{{ $dt->transaksi->status_transaksi}}</td>
             </tr>
         @empty
         <tr>
