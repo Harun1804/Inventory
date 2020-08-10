@@ -44,7 +44,9 @@
                     <td>{{ $pr->kategori->nama_kategori }}</td>
                     <td>{{ $pr->nama_produk }}</td>
                     <td>{{ $pr->stok }}</td>
+                    @if ($pr->detailtransaksi->rak != null)
                     <td>{{ $pr->detailtransaksi->rak }}</td>
+                    @endif
                 </tr>
                 @empty
                 <tr>
