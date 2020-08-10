@@ -16,6 +16,6 @@ class Produk extends Model
 
     public function detailtransaksi()
     {
-        return $this->hasOne(DetailPermintaan::class);
+        return $this->belongsTo(DetailPermintaan::class);
     }
 }
