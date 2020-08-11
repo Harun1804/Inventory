@@ -43,7 +43,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $pr->kategori->nama_kategori }}</td>
                     <td>{{ $pr->nama_produk }}</td>
-                    <td>{{ $pr->stok }}</td>
+                    <td style="text-align:left">{{ $pr->stok }}</td>
                     @if ($pr->stok != 0)
                     <td>{{ $pr->detailtransaksi->rak }}</td>
                     @endif

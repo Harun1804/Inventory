@@ -29,7 +29,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $dt->produk->nama_produk }}</td>
-                    <td>{{ $dt->jumlah_permintaan }}</td>
+                    <td style="text-align: left">{{ $dt->jumlah_permintaan }}</td>
                     <td>
                         @if (Auth()->User()->role == 'pg' && $dt->status_produk == 0)
                         <a href="{{ url('/petugas/permintaan/detail/'.$dt->id) }}" class="btn btn-sm btn-warning">Edit</a>

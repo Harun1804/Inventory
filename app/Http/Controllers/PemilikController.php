@@ -17,14 +17,14 @@ class PemilikController extends Controller
 
     public function cetakDiterima()
     {
-        $dtransaksi = DetailPermintaan::where('status_produk', '=', 2)->get();
-        $pdf = PDF::loadView('export/transaksi', ['dtransaksi' => $dtransaksi]);
+        $jumlah = new DetailPermintaan;
+        $pdf = PDF::loadView('export/transaksi', ['jumlah' => $jumlah]);
         return $pdf->download('Laporan Transaksi.pdf');
     }
 
     public function filter(Request $request)
     {
-        $transaksi = Transaksi::whereBetween('created_at',[$request->mulai, $request->akhir])->paginate(10);
+        $transaksi = Transaksi::whereBetween('created_at', [$request->mulai, $request->akhir])->paginate(10);
         $mulai = $request->mulai;
         $akhir = $request->akhir;
         return view('pemilik.filter', compact(['transaksi', 'mulai', 'akhir']));
@@ -32,7 +32,7 @@ class PemilikController extends Controller
 
     public function cetakFilter($start, $end)
     {
-        $dtransaksi = DetailPermintaan::where('created_at', '>=', $start)->where('created_at', '<=', $end)->get();
+        $dtransaksi = new DetailPermintaan;
         $pdf = PDF::loadView('export/tanggal', ['dtransaksi' => $dtransaksi, 'mulai' => $start, 'akhir' => $end]);
         return $pdf->download('Laporan Filter Transaksi.pdf');
     }

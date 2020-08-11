@@ -24,7 +24,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $dt->produk->nama_produk }}</td>
-                    <td>{{ $dt->jumlah_dikirim }}</td>
+                    <td style="text-align: left">{{ $dt->jumlah_dikirim }}</td>
                     <td>{{ $dt->updated_at->format('d-m-Y') }}</td>
                     <td>
                         <a href="{{ url('/petugas/barang/masuk/'.$dt->id) }}" class="btn btn-sm btn-warning">Masukan Ke Rak</a>
@@ -69,7 +69,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $dt->produk->nama_produk }}</td>
-                    <td>{{ $dt->jumlah_dikirim }}</td>
+                    <td style="text-align: left">{{ $dt->jumlah_dikirim }}</td>
                     <td>{{ $dt->updated_at->format('d-m-Y') }}</td>
                     <td></td>
                 </tr>
