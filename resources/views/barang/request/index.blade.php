@@ -134,6 +134,47 @@
         </div>
     </div>
 </div>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">Barang Ditolak</h3>
+        <div class="right">
+            <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+        </div>
+    </div>
+    <div class="panel-body no-padding">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nama Pemesan</th>
+                    <th>Status Permintaan</th>
+                    <th>Tanggal Permintaan Dibuat</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($transaksi as $tr)
+                @if ($tr->jenis_transaksi == 'permintaan' && $tr->status_transaksi=='ditolak')
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $tr->user->name }}</td>
+                    <td><span class="label label-danger">{{ $tr->status_transaksi }}</span></td>
+                    <td>{{ $tr->created_at }}</td>
+                    <td>
+                        <a href="{{ url('/permintaan/'.$tr->id) }}" class="btn btn-sm btn-info">Detail</a>
+                    </td>
+                </tr>
+                @endif
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+        <div class="panel-footer">
+        <div class="row">
+            <div class="col-md">{{ $transaksi->links() }}</div>
+        </div>
+    </div>
+</div>
 @endif
 @if (Auth()->User()->role=='pg')
 <div class="panel">
