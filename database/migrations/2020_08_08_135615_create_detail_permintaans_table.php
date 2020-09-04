@@ -18,9 +18,12 @@ class CreateDetailPermintaansTable extends Migration
             $table->unsignedInteger('jumlah_permintaan');
             $table->unsignedInteger('jumlah_dikirim')->nullable();
             $table->unsignedInteger('status_produk');
+            $table->string('kondisi_produk')->nullable();
+            $table->string('alasan')->nullable();
             $table->string('rak')->nullable();
             $table->foreignId('transaksi_id')->constrained('transaksi')->onDelete('cascade');
             $table->foreignId('produk_id')->constrained('produk')->onDelete('cascade');
+            $table->date('tgl_masuk_rak')->nullable();
             $table->timestamps();
         });
     }

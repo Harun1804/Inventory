@@ -62,7 +62,10 @@ Route::group(['middleware' => ['auth']], function () {
     //pemilik
     //laporan
     Route::get('/pemilik/laporan', 'PemilikController@index')->name('pemilik.laporan');
-    Route::get('/pemilik/laporan/cetak', 'PemilikController@cetakDiterima')->name('pemilik.laporan.cetak');
+    Route::get('/pemilik/laporan/semua', 'PemilikController@semua')->name('pemilik.laporan.semua');
+    Route::get('/pemilik/laporan/cetak', 'PemilikController@cetakSemua')->name('pemilik.laporan.cetak');
     Route::post('/pemilik/laporan/filter', 'PemilikController@filter')->name('pemilik.laporan.filter');
-    Route::get('/pemilik/laporan/filter/{mulai}/{akhir}', 'PemilikController@cetakFilter')->name('pemilik.laporan.cetak.filter');
+    Route::get('/pemilik/laporan/filter/keterangan/{keterangan}', 'PemilikController@cetakFilterKeterangan')->name('pemilik.laporan.cetak.filter.keterangan');
+    Route::get('/pemilik/laporan/filter/{mulai}/{akhir}', 'PemilikController@cetakFilterTanggal')->name('pemilik.laporan.cetak.filter.tanggal');
+    Route::get('/pemilik/laporan/filter/{id}', 'PemilikController@cetakFilterSupplier')->name('pemilik.laporan.cetak.filter.supplier');
 });

@@ -22,34 +22,6 @@
             @error('email')
             <div class="alert alert-danger my-2">{{ $message }}</div>
             @enderror
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="input-group input-group-merge input-group-alternative">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                            </div>
-                            <input class="form-control" placeholder="Password" type="password" name="password">
-                        </div>
-                    </div>
-                    @error('password')
-                        <div class="alert alert-danger my-2">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="input-group input-group-merge input-group-alternative">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                            </div>
-                            <input class="form-control" placeholder="Confirm Password" type="password" name="cpassword">
-                        </div>
-                    </div>
-                    @error('cpassword')
-                        <div class="alert alert-danger my-2">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Alamat" name="alamat" value="{{ old('alamat') }}">
             </div>
@@ -60,6 +32,18 @@
                 <input type="text" class="form-control" placeholder="Telepon" name="telepon" value="{{ old('telepon') }}">
             </div>
             @error('telepon')
+                <div class="alert alert-danger my-2">{{ $message }}</div>
+            @enderror
+            <div class="form-group">
+                <label for="kategori_id">Kategori Supplier</label>
+                <select class="form-control" id="kategori_id" name="kategori_id">
+                    <option disabled selected>Pilih Kategori</option>
+                    @foreach ($kategori as $k)
+                        <option value="{{ $k->id }}">{{ $k->nama_kategori }}</option>
+                    @endforeach
+                </select>
+            </div>
+            @error('kategori_id')
                 <div class="alert alert-danger my-2">{{ $message }}</div>
             @enderror
             <button type="submit" class="btn btn-primary">Simpan</button>

@@ -14,6 +14,7 @@
             <thead>
                 <tr>
                     <th>#</th>
+                    <th>Kategori Supplier</th>
                     <th>Nama Supplier</th>
                     <th>Alamat</th>
                     <th>Telepon</th>
@@ -24,6 +25,7 @@
                 @foreach ($supplier as $sp)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
+                    <td>{{ $sp->kategori->nama_kategori }}</td>
                     <td>{{ $sp->user->name }}</td>
                     <td>{{ $sp->alamat }}</td>
                     <td>{{ $sp->telepon }}</td>

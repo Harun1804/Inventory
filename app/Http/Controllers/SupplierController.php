@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Kategori;
 use App\Model\Supplier;
 use App\User;
 use Illuminate\Http\Request;
@@ -16,7 +17,8 @@ class SupplierController extends Controller
 
     public function create()
     {
-        return view('supplier.create');
+        $kategori = Kategori::all();
+        return view('supplier.create',compact('kategori'));
     }
 
     public function store(Request $request)
@@ -24,8 +26,6 @@ class SupplierController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|unique:users,email|email',
-            'password' => 'required|same:cpassword',
-            'cpassword' => 'required|same:password',
             'alamat' => 'required',
             'telepon' => 'required|numeric'
         ]);
@@ -33,11 +33,11 @@ class SupplierController extends Controller
         $user->role = 'supplier';
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = bcrypt($request->password);
+        $user->password = bcrypt(123);
         $user->save();
 
         $request->request->add(['user_id' => $user->id]);
-        Supplier::create($request->only(['alamat', 'telepon', 'user_id']));
+        Supplier::create($request->only(['alamat', 'telepon', 'user_id','kategori_id']));
         return redirect(route('supplier.index'))->with('status', 'Data Supplier Telah Dibuat');
     }
 
@@ -56,21 +56,15 @@ class SupplierController extends Controller
 
     public function update(Request $request, $id)
     {
-        if ($request->password == null) {
-            User::where('id', '=', $id)->update([
-                'name' => $request->name,
-                'email' => $request->email
-            ]);
-        } else {
-            User::where('id', '=', $id)->update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => $request->password
-            ]);
-        }
+        User::where('id', '=', $id)->update([
+            'name' => $request->name,
+            'email' => $request->email
+        ]);
+
         Supplier::where('user_id', '=', $id)->update([
             'alamat' => $request->alamat,
-            'telepon' => $request->telepon
+            'telepon' => $request->telepon,
+            'kategori_id' => $request->kategori_id
         ]);
         return redirect(route('supplier.index'))->with('status', 'Data Supplier Telah Dihapus');
     }

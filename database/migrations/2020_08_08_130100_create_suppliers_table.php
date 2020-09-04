@@ -17,6 +17,7 @@ class CreateSuppliersTable extends Migration
             $table->id();
             $table->string('alamat');
             $table->string('telepon');
+            $table->foreignId('kategori_id')->constrained('kategori')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
@@ -29,9 +30,10 @@ class CreateSuppliersTable extends Migration
      */
     public function down()
     {
-        Schema::table('supplier', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
-        });
+        // Schema::table('supplier', function (Blueprint $table) {
+        //     $table->dropForeign(['user_id']);
+        //     //$table->dropForeign(['kategori_id']);
+        // });
         Schema::dropIfExists('supplier');
     }
 }
