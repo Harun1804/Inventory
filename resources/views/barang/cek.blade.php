@@ -1,24 +1,5 @@
 @extends('layouts/master')
 @section('content')
-{{-- <div class="panel">
-    <div class="panel-heading">
-        <h3 class="panel-title">Pengecekan Barang Berdasarkan Kategori</h3>
-    </div>
-    <div class="panel-body">
-        <form action="" method="get">
-            @csrf
-            <div class="form-group" id="kategori">
-                <label for="kategori">Pilih Kategori</label>
-                <select class="form-control" id="kategori" name="kategori" @change="onChange($event)" v-model="key">
-                    <option disabled selected>Pilih Kategori</option>
-                    @foreach ($kategori as $ktgr)
-                        <option value="{{ $ktgr->id }}">{{ $ktgr->nama_kategori }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </form>
-    </div>
-</div> --}}
 <div class="panel">
     <div class="panel-heading">
         <h3 class="panel-title">Tabel Barang</h3>
@@ -35,6 +16,7 @@
                     <th>Nama Barang</th>
                     <th>Jumlah Barang</th>
                     <th>Rak</th>
+                    <th>Tanggal Masuk Rak</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,6 +28,7 @@
                     <td style="text-align:left">{{ $pr->stok }}</td>
                     @if ($pr->stok != 0)
                     <td>{{ $pr->detailtransaksi->rak }}</td>
+                    <td>{{ $pr->detailtransaksi->tgl_masuk_rak }}</td>
                     @endif
                 </tr>
                 @empty
@@ -62,19 +45,4 @@
         </div>
     </div>
 </div>
-@endsection
-@section('footer')
-<script>
-    var kategori = new Vue({
-        el : '#kategori',
-        data : {
-            key:""
-        },
-        methods: {
-            onChange(event){
-                console.log(event.target.value)
-            }
-        },
-    });
-</script>
 @endsection

@@ -17,6 +17,7 @@
             <thead>
                 <tr>
                     <th>#</th>
+                    <th>Nama Kategori</th>
                     <th>Nama Barang</th>
                     <th>Jumlah Permintaan</th>
                     @if(Auth()->User()->role == 'pc' && $transaksi->status_transaksi == 'diterima')
@@ -28,6 +29,7 @@
                 @forelse ($detailtransaksi as $dt)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
+                    <td>{{ $dt->produk->kategori->nama_kategori }}</td>
                     <td>{{ $dt->produk->nama_produk }}</td>
                     <td style="text-align: left">{{ $dt->jumlah_permintaan }}</td>
                     <td>
@@ -67,6 +69,11 @@
                                                         placeholder="Masukan Jumlah Yang Akan Dikirm" required name="jumlah_dikirim">
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="alasan" class="control-label sr-only">Alasan</label>
+                                                <input type="text" class="form-control" id="alasan"
+                                                placeholder="Masukan Alasan Jika Pengiriman Barang Tidak Sesuai Permintaan" required name="alasan">
                                             </div>
                                     </div>
                                     <div class="modal-footer">

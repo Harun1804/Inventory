@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\DetailPermintaan;
 use App\Model\Kategori;
 use App\Model\Produk;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -24,6 +25,31 @@ class BarangController extends Controller
         return view('barang.masuk.masuk', compact(['detailtransaksi']));
     }
 
+    public function kembaliBarang()
+    {
+        $detailtransaksi = DetailPermintaan::where('status_produk',3)->paginate(10);
+        return view('barang.returnBarang',compact('detailtransaksi'));
+    }
+
+    public function kembaliBarangSuppplier($id)
+    {
+        $detail = DetailPermintaan::find($id);
+        $detail->update([
+            'status_produk' => 4
+        ]);
+        return redirect(route('pengembalian.barang'))->with('status', 'Barang Telah Direturn ke Supplier');
+    }
+
+    public function updateKembaliBarang(Request $request,$id)
+    {
+        $detail = DetailPermintaan::find($id);
+        $detail->update([
+            'status_produk' => 3,
+            'kondisi_produk'=> $request->kondisi_produk
+        ]);
+        return redirect(route('barang.masuk'))->with('status', 'Barang Telah Direturn ke Purchasing');
+    }
+
     public function rak($id)
     {
         $detail = DetailPermintaan::where('id', $id)->first();
@@ -34,7 +60,8 @@ class BarangController extends Controller
     {
         DetailPermintaan::where('id', $id)->update([
             'status_produk' => 2,
-            'rak' => $request->rak
+            'rak' => $request->rak,
+            'tgl_masuk_rak' => Carbon::now()
         ]);
         return redirect(route('barang.masuk'))->with('status', 'Barang Telah Dimasukan Kedalam Rak');
     }

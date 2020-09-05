@@ -23,6 +23,7 @@
                             @elseif(Auth()->user()->role == 'pc')
 		                    <li><a href="{{ route('permintaan.index') }}" class=""><i class="lnr lnr-cart"></i><span>Order</span></a></li>
                             <li><a href="{{ route('supplier.index') }}" class=""><i class="lnr lnr-user"></i><span>Supplier</span></a></li>
+                            <li><a href="{{ route('pengembalian.barang') }}" class=""><i class="lnr lnr-undo"></i><span>Pengembalian</span></a></li>
                             @elseif(Auth()->user()->role == 'pemilik')
                                 <li><a href="{{ route('pemilik.laporan') }}" class=""><i class="lnr lnr-file-empty"></i><span>Laporan</span></a></li>
                             @endif

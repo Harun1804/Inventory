@@ -77,6 +77,15 @@
                     </p>
                 </div>
             </div>
+            <div class="col-md-3">
+                <div class="metric">
+                    <span class="icon"><i class="lnr lnr-undo"></i></span>
+                    <p>
+                        <span class="number">{{ $detail::where('status_produk',3)->count() }}</span>
+                        <span class="title">Pengembalian</span>
+                    </p>
+                </div>
+            </div>
         </div>
         @elseif(Auth()->User()->role == 'pemilik')
         <div class="row">

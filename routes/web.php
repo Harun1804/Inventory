@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/petugas/barang/masuk/invoice', 'Barang\BarangController@cetakInvoice')->name('barang.masuk.invoice');
     Route::get('/petugas/barang/masuk/{id}', 'Barang\BarangController@rak')->name('barang.masuk.rak');
     Route::put('/petugas/barang/masuk/{id}', 'Barang\BarangController@updateRak')->name('barang.masuk.rak.update');
+    Route::put('/petugas/barang/masuk/{id}/kembali','Barang\BarangController@updateKembaliBarang')->name('barang.return');
     //Permintaan
     Route::get('/petugas/permintaan', 'Barang\RequestController@index')->name('barang.index');
     Route::get('/petugas/permintaan/create', 'Barang\RequestController@create')->name('barang.create');
@@ -53,9 +54,13 @@ Route::group(['middleware' => ['auth']], function () {
 
     //Purchasing
     //Permintaan
+    Route::get('/pc/permintaan/{id}/persetujuan', 'Barang\RequestController@halamanPersetujuan')->name('halaman.persetujuan');
+    Route::get('/pc/permintaan/supplier', 'Barang\RequestController@getSupplier')->name('halaman.persetujuan.supplier');
     Route::put('/pc/permintaan/{id}/persetujuan', 'Barang\RequestController@persetujuan')->name('permintaan.persetujuan');
     Route::put('/pc/permintaan/{id}/kirim', 'Barang\RequestController@kirim')->name('permintaan.kirim');
     Route::get('/pc/permintaan/{id}/cetak', 'Barang\RequestController@cetakfaktur')->name('permintaan.cetak');
+    Route::get('/pc/pengembalian','Barang\BarangController@KembaliBarang')->name('pengembalian.barang');
+    Route::get('/pc/pengembalian/{id}','Barang\BarangController@kembaliBarangSuppplier')->name('pengembalian.barang.supplier');
     //Supplier
     Route::resource('/pc/supplier', 'SupplierController');
 
