@@ -43,7 +43,21 @@ class RequestController extends Controller
     public function createDetail(Request $request)
     {
         $cekTransakasi = Transaksi::orderBy('id','desc')->first();
-        if($cekTransakasi->jenis_transaksi == 'permintaan' && $cekTransakasi->status_transaksi == 'menunggu'){
+        if($cekTransakasi == null){
+            $transaksi = new Transaksi;
+            $transaksi->user_id = Auth()->User()->id;
+            $transaksi->jenis_transaksi = 'permintaan';
+            $transaksi->status_transaksi = 'menunggu';
+            $transaksi->save();
+
+            $request->request->add(['transaksi_id'=>$transaksi->id]);
+            DetailPermintaan::create([
+                'transaksi_id' => $request->transaksi_id,
+                'produk_id' => $request->produk_id,
+                'jumlah_permintaan' => $request->jumlah_permintaan,
+                'status_produk' => 0
+            ]);
+        }elseif($cekTransakasi->jenis_transaksi == 'permintaan' && $cekTransakasi->status_transaksi == 'menunggu'){
             DetailPermintaan::create([
                 'transaksi_id' => $cekTransakasi->id,
                 'produk_id' => $request->produk_id,
