@@ -24,6 +24,18 @@ class PemilikController extends Controller
 
     public function filter(Request $request)
     {
+        if($request->status_transaksi != null && $request->supplier_id != null && $request->mulai != null && $request->akhir != null){
+            $keterangan = $request->status_transaksi ;
+            $supplier = $request->supplier_id ;
+            $mulai = $request->mulai;
+            $akhir = $request->akhir;
+            $transaksi = Transaksi::where([
+                ['status_transaksi','=',$request->status_transaksi],
+                ['supplier_id','=',$request->supplier_id]
+                ])->whereBetween('created_at', [$request->mulai, $request->akhir])->paginate(10);
+            return view('pemilik.filter.allFilter',compact(['keterangan','mulai','akhir','supplier','transaksi']));
+        }
+
         if($request->mulai && $request->akhir){
             $transaksi = Transaksi::whereBetween('created_at', [$request->mulai, $request->akhir])->paginate(10);
             $mulai = $request->mulai;
@@ -72,7 +84,10 @@ class PemilikController extends Controller
     public function cetakFilterKeterangan($keterangan)
     {
         $transaksi = Transaksi::where('status_transaksi',$keterangan)->get();
-        $pdf = PDF::loadView('export/filter/keterangan', ['transaksi' => $transaksi, 'keterangan' => $keterangan]);
+        foreach($transaksi as $dt){
+            $total = $dt->detailTransaksi->sum('jumlah_dikirim');
+        }
+        $pdf = PDF::loadView('export/filter/keterangan', ['transaksi' => $transaksi, 'keterangan' => $keterangan,'total'=>$total]);
         return $pdf->download('Laporan Filter Keterangan Transaksi.pdf');
     }
 }

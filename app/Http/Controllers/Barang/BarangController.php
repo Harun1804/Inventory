@@ -40,28 +40,32 @@ class BarangController extends Controller
         return redirect(route('pengembalian.barang'))->with('status', 'Barang Telah Direturn ke Supplier');
     }
 
-    public function updateKembaliBarang(Request $request,$id)
+    public function updateBarang(Request $request, $id)
     {
-        $detail = DetailPermintaan::find($id);
-        $detail->update([
-            'status_produk' => 3,
-            'kondisi_produk'=> $request->kondisi_produk
-        ]);
-        return redirect(route('barang.masuk'))->with('status', 'Barang Telah Direturn ke Purchasing');
-    }
-
-    public function rak($id)
-    {
-        $detail = DetailPermintaan::where('id', $id)->first();
-        return view('barang.masuk.rak', compact('detail'));
-    }
-
-    public function updateRak(Request $request, $id)
-    {
-        DetailPermintaan::where('id', $id)->update([
-            'status_produk' => 2,
-            'rak' => $request->rak,
-            'tgl_masuk_rak' => Carbon::now()
+        if($request->kondisi_produk == null && $request->jumlah_kembali == null){
+            DetailPermintaan::where('id', $id)->update([
+                'jumlah_masuk'=> $request->jumlah_masuk,
+                'rak' => $request->rak,
+                'status_produk' => 2,
+                'rak' => $request->rak,
+                'tgl_masuk_rak' => Carbon::now()
+            ]);
+        }else{
+            DetailPermintaan::where('id', $id)->update([
+                'kondisi_produk'=> $request->kondisi_produk,
+                'jumlah_kembali'=> $request->jumlah_kembali,
+                'jumlah_masuk'=> $request->jumlah_masuk,
+                'rak' => $request->rak,
+                'status_produk' => 3,
+                'rak' => $request->rak,
+                'tgl_masuk_rak' => Carbon::now()
+            ]);
+        }
+        $cari = DetailPermintaan::where('id', '=', $id)->first();
+        $produk = Produk::where('id', $cari->produk_id)->first();
+        $stok = $produk->stok;
+        $coba = $produk->update([
+            'stok' => $stok + $request->jumlah_masuk
         ]);
         return redirect(route('barang.masuk'))->with('status', 'Barang Telah Dimasukan Kedalam Rak');
     }

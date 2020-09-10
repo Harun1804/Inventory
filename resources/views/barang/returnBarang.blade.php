@@ -15,7 +15,7 @@
                     <th>Nama Kategori</th>
                     <th>Nama Barang</th>
                     <th>Kondisi Produk</th>
-                    <th>Jumlah Permintaan</th>
+                    <th>Jumlah Pengembalian</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -27,7 +27,7 @@
                     <td>{{ $dt->produk->kategori->nama_kategori }}</td>
                     <td>{{ $dt->produk->nama_produk }}</td>
                     <td>{{ $dt->kondisi_produk }}</td>
-                    <td style="text-align: left">{{ $dt->jumlah_permintaan }}</td>
+                    <td style="text-align: left">{{ $dt->jumlah_kembali }}</td>
                     <td>
                         <a href="{{ route('pengembalian.barang.supplier',$dt->id) }}" class="btn btn-sm btn-primary">Kembalikan Ke Supplier</a>
                     </td>

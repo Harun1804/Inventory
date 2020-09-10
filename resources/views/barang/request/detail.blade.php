@@ -19,7 +19,7 @@
                     <th>#</th>
                     <th>Nama Kategori</th>
                     <th>Nama Barang</th>
-                    <th>Jumlah Permintaan</th>
+                    <th>Jumlah Pesanan</th>
                     @if(Auth()->User()->role == 'pc' && $transaksi->status_transaksi == 'diterima')
                     <th>Aksi</th>
                     @endif
@@ -38,7 +38,7 @@
                         <a class="btn btn-sm btn-danger delete" id="{{ $dt->id }}">Delete</a>
                         @elseif(Auth()->User()->role == 'pc' && $dt->status_produk == 0 && $dt->transaksi->status_transaksi == 'diterima')
                         <a type="button" class="btn btn-sm btn-primary" data-toggle="modal"
-                            data-target="#kirim">Kirim</a>
+                            data-target="#kirim">Barang Masuk</a>
                         <div class="modal fade" id="kirim" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -73,7 +73,7 @@
                                             <div class="form-group">
                                                 <label for="alasan" class="control-label sr-only">Alasan</label>
                                                 <input type="text" class="form-control" id="alasan"
-                                                placeholder="Masukan Alasan Jika Pengiriman Barang Tidak Sesuai Permintaan" required name="alasan">
+                                                placeholder="Masukan Alasan Jika Pengiriman Barang Tidak Sesuai Permintaan" name="alasan">
                                             </div>
                                     </div>
                                     <div class="modal-footer">

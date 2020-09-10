@@ -18,18 +18,16 @@ class RequestController extends Controller
         $transaksi = Transaksi::orderBy('id', 'desc')->paginate(10);
         $supplier = Supplier::all();
         $produk = Produk::all();
+        $kategori = Kategori::all();
         $detail = new DetailPermintaan;
-        return view('barang.request.index', compact(['transaksi', 'supplier','produk','detail']));
+        return view('barang.request.index', compact(['transaksi', 'supplier','produk','detail','kategori']));
     }
 
-    public function create()
+    public function getProduk(Request $request)
     {
-        Transaksi::create([
-            'user_id' => Auth()->User()->id,
-            'jenis_transaksi' => 'permintaan',
-            'status_transaksi' => 'menunggu'
-        ]);
-        return redirect(route('barang.index'))->with('status', 'Permintaan Telah dibuat');
+        $kategori_id = $request->input('kategori_id');
+        $produk = Produk::with('kategori')->where('kategori_id',$kategori_id)->get();
+        return response()->json($produk);
     }
 
     public function show($id)
@@ -48,6 +46,7 @@ class RequestController extends Controller
             $transaksi->user_id = Auth()->User()->id;
             $transaksi->jenis_transaksi = 'permintaan';
             $transaksi->status_transaksi = 'menunggu';
+            $transaksi->kategori_id = $request->kategori_id;
             $transaksi->save();
 
             $request->request->add(['transaksi_id'=>$transaksi->id]);
@@ -57,7 +56,22 @@ class RequestController extends Controller
                 'jumlah_permintaan' => $request->jumlah_permintaan,
                 'status_produk' => 0
             ]);
-        }elseif($cekTransakasi->jenis_transaksi == 'permintaan' && $cekTransakasi->status_transaksi == 'menunggu'){
+        }elseif($cekTransakasi->jenis_transaksi == 'permintaan' && $cekTransakasi->status_transaksi == 'menunggu' && $cekTransakasi->kategori_id != $request->kategori_id){
+            $transaksi = new Transaksi;
+            $transaksi->user_id = Auth()->User()->id;
+            $transaksi->jenis_transaksi = 'permintaan';
+            $transaksi->status_transaksi = 'menunggu';
+            $transaksi->kategori_id = $request->kategori_id;
+            $transaksi->save();
+
+            $request->request->add(['transaksi_id'=>$transaksi->id]);
+            DetailPermintaan::create([
+                'transaksi_id' => $request->transaksi_id,
+                'produk_id' => $request->produk_id,
+                'jumlah_permintaan' => $request->jumlah_permintaan,
+                'status_produk' => 0
+            ]);
+        }elseif($cekTransakasi->jenis_transaksi == 'permintaan' && $cekTransakasi->status_transaksi == 'menunggu' && $cekTransakasi->kategori_id == $request->kategori_id){
             DetailPermintaan::create([
                 'transaksi_id' => $cekTransakasi->id,
                 'produk_id' => $request->produk_id,
@@ -69,6 +83,7 @@ class RequestController extends Controller
             $transaksi->user_id = Auth()->User()->id;
             $transaksi->jenis_transaksi = 'permintaan';
             $transaksi->status_transaksi = 'menunggu';
+            $transaksi->kategori_id = $request->kategori_id;
             $transaksi->save();
 
             $request->request->add(['transaksi_id'=>$transaksi->id]);
@@ -120,7 +135,7 @@ class RequestController extends Controller
     public function getSupplier(Request $request)
     {
         $kategori_id = $request->input('kategori_id');
-        $supplier = Supplier::where('kategori_id',$kategori_id)->get();
+        $supplier = Supplier::with('user')->where('kategori_id',$kategori_id)->get();
         return response()->json($supplier);
     }
 
@@ -145,10 +160,10 @@ class RequestController extends Controller
         ]);
         $cari = DetailPermintaan::where('id', '=', $id)->first();
         $produk = Produk::where('id', $cari->produk_id)->first();
-        $stok = $produk->stok;
-        $coba = $produk->update([
-            'stok' => $stok + $request->jumlah_dikirim
-        ]);
+        // $stok = $produk->stok;
+        // $coba = $produk->update([
+        //     'stok' => $stok + $request->jumlah_dikirim
+        // ]);
         return redirect()->back()->with('status', 'Barang Telah Dikirm');
     }
 

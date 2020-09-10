@@ -258,11 +258,16 @@
                 <form action="{{ route('barang.detail.create') }}" method="POST">
                     @csrf
                     <div class="form-group">
-                        <select class="form-control" name="produk_id">
-                            <option disabled selected>Pilih Produk</option>
-                            @foreach ($produk as $p)
-                            <option value="{{ $p->id }}">{{ $p->nama_produk }}</option>
+                        <select class="form-control" name="kategori_id" id="kategori_id">
+                            <option disabled selected>Pilih Kategori</option>
+                            @foreach ($kategori as $k)
+                            <option value="{{ $k->id }}">{{ $k->nama_kategori }}</option>
                             @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="produk_id" id="produk_id">
+                            <option disabled selected>NA</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -281,6 +286,18 @@
 @endsection
 @section('footer')
 <script>
+$(document).ready(function(){
+    $('#kategori_id').on('change',function(e){
+        var kategori_id = e.target.value
+        $.get('/petugas/permintaan/produk?kategori_id='+kategori_id,function(data){
+            $('#produk_id').empty();
+            $('#produk_id').append('<option disable="true" selected="true">Pilih Produk</option>');
+            $.each(data, function(index, produk){
+                $('#produk_id').append('<option value="'+ produk.id +'">'+ produk.nama_produk +'</option>');
+            });
+        });
+    });
+
     $('.delete').click(function () {
         var id = $(this).attr('id');
         swal({
@@ -297,5 +314,6 @@
             });
     });
 
+});
 </script>
 @endsection

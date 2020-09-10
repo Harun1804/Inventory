@@ -28,7 +28,7 @@
             </div>
             <div class="form-group">
                 <label for="alasan" class="control-label sr-only">Alasan</label>
-                <input type="text" class="form-control" id="alasan" placeholder="Masukan Alasan" required name="alasan">
+                <input type="text" class="form-control" id="alasan" placeholder="Masukan Alasan" name="alasan">
             </div>
             <button type="submit" class="btn btn-info" name="approve" value="diterima">Setuju</button>
             <button type="submit" class="btn btn-danger" name="approve" value="ditolak">Tolak</button>
@@ -45,7 +45,7 @@
                     $('#supplier').empty();
                     $('#supplier').append('<option disable="true" selected="true">Pilih Supplier</option>');
                         $.each(data, function(index, supplier){
-                            $('#supplier').append('<option value="'+ supplier.id +'">Funny</option>');
+                            $('#supplier').append('<option value="'+ supplier.id +'">'+ supplier.user.name +'</option>');
                         });
                 });
             });

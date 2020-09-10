@@ -50,7 +50,7 @@
     <tfoot>
         <tr>
             <td colspan="3" style="text-align: right">Total Barang</td>
-            <td colspan="1">50</td>
+            <td colspan="1">{{ $total }}</td>
         </tr>
     </tfoot>
 </table>

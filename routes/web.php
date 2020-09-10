@@ -39,18 +39,17 @@ Route::group(['middleware' => ['auth']], function () {
     //barang masuk
     Route::get('/petugas/barang/masuk', 'Barang\BarangController@barangMasuk')->name('barang.masuk');
     Route::get('/petugas/barang/masuk/invoice', 'Barang\BarangController@cetakInvoice')->name('barang.masuk.invoice');
-    Route::get('/petugas/barang/masuk/{id}', 'Barang\BarangController@rak')->name('barang.masuk.rak');
-    Route::put('/petugas/barang/masuk/{id}', 'Barang\BarangController@updateRak')->name('barang.masuk.rak.update');
-    Route::put('/petugas/barang/masuk/{id}/kembali','Barang\BarangController@updateKembaliBarang')->name('barang.return');
+    Route::put('/petugas/barang/masuk/{id}/kondisi','Barang\BarangController@updateBarang')->name('barang.return');
     //Permintaan
     Route::get('/petugas/permintaan', 'Barang\RequestController@index')->name('barang.index');
-    Route::get('/petugas/permintaan/create', 'Barang\RequestController@create')->name('barang.create');
+    Route::get('/petugas/permintaan/produk', 'Barang\RequestController@getProduk')->name('barang.get.produk');
     Route::get('/petugas/permintaan/{id}', 'Barang\RequestController@show')->name('barang.detail');
     Route::post('petugas/permintaan/detail/create', 'Barang\RequestController@createDetail')->name('barang.detail.create');
     Route::get('/petugas/permintaan/detail/{id}', 'Barang\RequestController@editDetail')->name('barang.detail.edit');
     Route::put('/petugas/permintaan/detail/{id}/update', 'Barang\RequestController@updateDetail')->name('barang.detail.update');
     Route::get('/petugas/permintaan/detail/{id}/delete', 'Barang\RequestController@deleteDetail')->name('barang.detail.delete');
     Route::get('/petugas/permintaan/{id}/delete', 'Barang\RequestController@destroy')->name('barang.delete');
+    Route::get('/pc/pengembalian','Barang\BarangController@KembaliBarang')->name('pengembalian.barang');
 
     //Purchasing
     //Permintaan
@@ -59,7 +58,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/pc/permintaan/{id}/persetujuan', 'Barang\RequestController@persetujuan')->name('permintaan.persetujuan');
     Route::put('/pc/permintaan/{id}/kirim', 'Barang\RequestController@kirim')->name('permintaan.kirim');
     Route::get('/pc/permintaan/{id}/cetak', 'Barang\RequestController@cetakfaktur')->name('permintaan.cetak');
-    Route::get('/pc/pengembalian','Barang\BarangController@KembaliBarang')->name('pengembalian.barang');
     Route::get('/pc/pengembalian/{id}','Barang\BarangController@kembaliBarangSuppplier')->name('pengembalian.barang.supplier');
     //Supplier
     Route::resource('/pc/supplier', 'SupplierController');

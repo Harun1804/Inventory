@@ -19,6 +19,8 @@ class CreateDetailPermintaansTable extends Migration
             $table->unsignedInteger('jumlah_dikirim')->nullable();
             $table->unsignedInteger('status_produk');
             $table->string('kondisi_produk')->nullable();
+            $table->unsignedInteger('jumlah_kembali')->nullable();
+            $table->unsignedInteger('jumlah_masuk')->nullable();
             $table->string('alasan')->nullable();
             $table->string('rak')->nullable();
             $table->foreignId('transaksi_id')->constrained('transaksi')->onDelete('cascade');
