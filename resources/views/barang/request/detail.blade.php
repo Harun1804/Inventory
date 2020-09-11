@@ -17,6 +17,7 @@
             <thead>
                 <tr>
                     <th>#</th>
+                    <th>Nama Supplier</th>
                     <th>Nama Kategori</th>
                     <th>Nama Barang</th>
                     <th>Jumlah Pesanan</th>
@@ -29,6 +30,7 @@
                 @forelse ($detailtransaksi as $dt)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
+                    <td>{{ $dt->transaksi->supplier->user->name }}</td>
                     <td>{{ $dt->produk->kategori->nama_kategori }}</td>
                     <td>{{ $dt->produk->nama_produk }}</td>
                     <td style="text-align: left">{{ $dt->jumlah_permintaan }}</td>
@@ -77,7 +79,7 @@
                                             </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-info">kirim</button>
+                                        <button type="submit" class="btn btn-info">Kirim Pesanan</button>
                                         </form>
                                     </div>
                                 </div>

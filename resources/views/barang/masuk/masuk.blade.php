@@ -43,7 +43,11 @@
                                         <form action="{{ url('/petugas/barang/masuk/'.$dt->id.'/kondisi') }}" method="POST">
                                             @csrf
                                             @method('put')
-
+                                            <div class="form-group">
+                                                <label for="jumlah_kirim" class="control-label sr-only">Jumlah Produk Yang Disimpan</label>
+                                                <input type="hidden" class="form-control" id="jumlah_kirim"
+                                                placeholder="Jumlah Produk Yang Disimpan" name="jumlah_kirim" value="{{ $dt->jumlah_dikirim }}">
+                                            </div>
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
@@ -54,28 +58,16 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
-                                                        <label for="jumlah_kembali" class="control-label sr-only">Jumlah Pengembalian</label>
-                                                        <input type="number" class="form-control" id="jumlah_kembali"
-                                                        placeholder="Jumlah Produk Yang Dikembalikan" name="jumlah_kembali">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="form-group">
                                                         <label for="rak" class="control-label sr-only">Rak</label>
                                                         <input type="text" class="form-control" id="rak"
                                                         placeholder="Masukan Rak" name="rak">
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group">
-                                                        <label for="jumlha_masuk" class="control-label sr-only">Jumlah Pengembalian</label>
-                                                        <input type="number" class="form-control" id="jumlha_masuk"
-                                                        placeholder="Jumlah Produk Yang Disimpan" name="jumlah_masuk">
-                                                    </div>
-                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="jumlah_kembali" class="control-label sr-only">Jumlah Pengembalian</label>
+                                                <input type="number" class="form-control" id="jumlah_kembali"
+                                                placeholder="Jumlah Produk Yang Dikembalikan" name="jumlah_kembali">
                                             </div>
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-sm btn-primary">Selesai</button>

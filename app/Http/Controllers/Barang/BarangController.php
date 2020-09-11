@@ -42,28 +42,30 @@ class BarangController extends Controller
 
     public function updateBarang(Request $request, $id)
     {
+        $getDetail = DetailPermintaan::where('id', $id);
+        $cari = $getDetail->first();
+        $produk = Produk::where('id', $cari->produk_id)->first();
+        $masuk = $request->jumlah_kirim - $request->jumlah_kembali;
+        $stok = $produk->stok;
         if($request->kondisi_produk == null && $request->jumlah_kembali == null){
-            DetailPermintaan::where('id', $id)->update([
-                'jumlah_masuk'=> $request->jumlah_masuk,
+            $getDetail->update([
+                'jumlah_masuk'=> $masuk,
                 'rak' => $request->rak,
                 'status_produk' => 2,
                 'rak' => $request->rak,
                 'tgl_masuk_rak' => Carbon::now()
             ]);
         }else{
-            DetailPermintaan::where('id', $id)->update([
+            $getDetail->update([
                 'kondisi_produk'=> $request->kondisi_produk,
                 'jumlah_kembali'=> $request->jumlah_kembali,
-                'jumlah_masuk'=> $request->jumlah_masuk,
+                'jumlah_masuk'=> $masuk,
                 'rak' => $request->rak,
                 'status_produk' => 3,
                 'rak' => $request->rak,
                 'tgl_masuk_rak' => Carbon::now()
             ]);
         }
-        $cari = DetailPermintaan::where('id', '=', $id)->first();
-        $produk = Produk::where('id', $cari->produk_id)->first();
-        $stok = $produk->stok;
         $coba = $produk->update([
             'stok' => $stok + $request->jumlah_masuk
         ]);
