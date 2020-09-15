@@ -30,7 +30,7 @@
                 @forelse ($detailtransaksi as $dt)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    @if($dt->transaksi->supplier->user->name != null)
+                    @if($dt->transaksi->supplier->user->name == null)
                     <td>Tidak mempunyai supplier</td>
                     @else
                     <td>{{ $dt->transaksi->supplier->user->name }}</td>
