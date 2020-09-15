@@ -27,8 +27,8 @@
                     <td>{{ $pr->nama_produk }}</td>
                     <td style="text-align:left">{{ $pr->stok }}</td>
                     @if ($pr->stok != 0)
-                    <td>{{ $pr->detailtransaksi->rak }}</td>
-                    <td>{{ $pr->detailtransaksi->tgl_masuk_rak }}</td>
+                    <td>{{ $pr->rak }}</td>
+                    <td>{{ $pr->tgl_masuk_rak }}</td>
                     @endif
                 </tr>
                 @empty

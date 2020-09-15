@@ -15,8 +15,9 @@ class BarangController extends Controller
     public function cekBarang()
     {
         $kategori = Kategori::all();
-        $produk = Produk::orderBy('kategori_id', 'asc')->paginate(10);
-        return view('barang.cek', compact(['kategori', 'produk']));
+        $produk = Produk::with('detailtransaksi')->orderBy('kategori_id', 'asc')->paginate(10);
+        $detail = DetailPermintaan::with('produk.kategori')->paginate(10);
+        return view('barang.cek', compact(['kategori', 'produk','detail']));
     }
 
     public function barangMasuk()
@@ -44,9 +45,7 @@ class BarangController extends Controller
     {
         $getDetail = DetailPermintaan::where('id', $id);
         $cari = $getDetail->first();
-        $produk = Produk::where('id', $cari->produk_id)->first();
         $masuk = $request->jumlah_kirim - $request->jumlah_kembali;
-        $stok = $produk->stok;
         if($request->kondisi_produk == null && $request->jumlah_kembali == null){
             $getDetail->update([
                 'jumlah_masuk'=> $masuk,
@@ -66,8 +65,10 @@ class BarangController extends Controller
                 'tgl_masuk_rak' => Carbon::now()
             ]);
         }
+        $produk = Produk::where('id', $cari->produk_id)->first();
+        $stok = $produk->stok;
         $coba = $produk->update([
-            'stok' => $stok + $request->jumlah_masuk
+            'stok' => $stok + $masuk
         ]);
         return redirect(route('barang.masuk'))->with('status', 'Barang Telah Dimasukan Kedalam Rak');
     }
